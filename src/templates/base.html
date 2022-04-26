@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+        <title>LIBReview</title>
+    {% endblock title %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lustria&display=swap" rel="stylesheet"> </head>
+<body>
+
+    <!-- Nav bar -->
+    <header>
+        <nav class="navbar">
+            <a class="logo-link" href="#">
+                <img class="logo-litreview" alt="Logo litreview" src="{% static 'img/logo-litreview.png' %}" />
+            </a>
+
+            <div class="container-namelinks">
+                <a href="#" class="text-homepage">LIBReview</a>
+            </div>
+
+            <div class="nav-right">
+                <ul>
+                    <li class="nav-right-link"><a href="#">Flux</a></li>
+                    <li class="nav-right-link"><a href="#">Posts</a></li>
+                    <li class="nav-right-link"><a href="#">Abonnements</a></li>
+                    <li class="nav-right-link"><a href="#">Se déconnecter</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Content -->
+    <div class="content">
+
+    {% block content %}
+
+    {% endblock content %}
+
+
+    </div>
+
+
+</body>
+</html>

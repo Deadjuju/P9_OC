@@ -1,0 +1,146 @@
+/* ------------- Init ------------- */
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #F1F1F1;
+    font-family: lato, arial;
+}
+button{
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+}
+a {
+    color: white;
+}
+
+
+/* ------------- Navigation ------------- */
+
+header {
+    /* margin-bottom: 130px; */
+}
+
+.navbar {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    /* position: fixed; */
+    z-index: 998;
+    border-bottom: 3px black solid;
+    background-color: aqua;
+}
+.logo-litreview {
+    height: 70%;
+    width: auto;
+    margin: auto;
+    margin-left: 2px;
+    filter: drop-shadow(1px 5px #DA0463);
+}
+nav a {
+    text-decoration: none;
+    font-size: 20px;
+    /* text-transform: uppercase; */
+    margin:0 10px;
+}
+.text-homepage {
+    font-size: 50px;
+    font-family: "Lustria", cursive;
+    text-shadow: 3px 3px #DA0463;
+    color: #333;
+    margin: auto;
+}
+.navbar .logo-link {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.container-namelinks {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.nav-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+}
+.nav-right li {
+    list-style-type: none;
+    margin: 5px;
+    padding: 5px;
+}
+.nav-right a {
+    color: #333;
+}
+.nav-right a:hover {
+    color: #555;
+}
+.nav-right a:active {
+    color: yellowgreen;
+}
+.nav-right li:hover{
+    text-decoration: underline;
+    font-size: 1.3em;
+    color: #DA0463;
+}
+
+
+/* ------------- Content ------------- */
+
+.content {
+    /* padding-top: 250px; */
+    margin: 50px 100px;
+}
+
+
+/* ------------- Login ------------- */
+
+.login {
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 5px;
+    padding: 50px 0;
+}
+.login-content {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 10px;
+}
+.login-text {
+    font-size: 2em;
+    margin: 15px 0;
+}
+.login-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: hsl(224, 29%, 22%);
+    color: #F1F1F1;
+    border: #333 2px solid;
+    border-radius: 50px;
+    margin: 10px 0;
+    padding: 5px 10px;
+    font-size: 1.1em;
+    text-decoration: none;
+    font-family: lato, arial;
+}
+.login-btn:hover{
+    background-color: hsl(224, 29%, 32%);
+    cursor: pointer;
+}
+.login-btn:active {
+    color: yellowgreen;
+    background-color: hsl(224, 29%, 42%);
+}
