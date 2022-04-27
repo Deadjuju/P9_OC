@@ -6,9 +6,29 @@
 
 
 {% block content %}
-    <h1>LITReview</h1>
+    <!-- Home / Flux -->
+    <div class="flux-content">
 
-    <p>Vous êtes connecté</p>
-    <p>Bonjour {{ user.username }}</p>
+        <div class="flux-header">
+            <h1>LITReview</h1>
+            <h3>Bonjour <strong>{{ user.username }}!</strong></h3>
+
+            <div class="flux-btns">
+                <a class="general-btn" href="{% url 'create_ticket' %}">Demander une critique</a>
+                <a class="general-btn" href="#">Créer une critique</a>
+            </div>
+            <h2>Votre flux</h2>
+        </div>
+
+        <div class="flux">
+            {% for ticket in tickets %}
+                <div class="flux-ticket">
+                    <p>Ticket - {{ ticket.user }}</p>
+                    <p>{{ ticket.title }}</p>
+                    <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock content %}
