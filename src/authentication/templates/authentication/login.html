@@ -1,34 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <!-- Login -->
+    <div class="login">
 
-    <!-- Content -->
-    <div class="content">
+        <p>{{ message }}</p>
 
-        <!-- Login -->
+        <div class="login-content login-registration">
+            <p class="login-text">
+                Inscrivez-vous maintenant!
+            </p>
+            <a class="login-btn general-btn" href="{% url 'signup' %}">S'inscrire</a>
+        </div>
 
-        <div class="login">
-
-            <p>{{ message }}</p>
-
-            <div class="login-content login-registration">
-                <p class="login-text">
-                    Inscrivez-vous maintenant!
-                </p>
-                <a class="login-btn" href="#">S'inscrire</a>
-            </div>
-
-            <div class="login-content login-form">
-                <p class="login-text">
-                    Connectez-vous
-                </p>
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="login-btn" type="submit">Se connecter</button>
-                </form>
-            </div>
-
+        <div class="login-content login-form">
+            <p class="login-text">
+                Connectez-vous
+            </p>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="login-btn general-btn" type="submit">Se connecter</button>
+            </form>
         </div>
 
     </div>
