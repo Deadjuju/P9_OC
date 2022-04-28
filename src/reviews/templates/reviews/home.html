@@ -15,7 +15,7 @@
 
             <div class="flux-btns">
                 <a class="general-btn" href="{% url 'create_ticket' %}">Demander une critique</a>
-                <a class="general-btn" href="#">Créer une critique</a>
+                <a class="general-btn" href="{% url 'create_review' %}">Créer une critique</a>
             </div>
             <h2>Votre flux</h2>
         </div>
@@ -23,9 +23,32 @@
         <div class="flux">
             {% for ticket in tickets %}
                 <div class="flux-ticket">
-                    <p>Ticket - {{ ticket.user }}</p>
+                    <p><strong>{{ ticket.user }} a demandé une critique</strong></p>
                     <p>{{ ticket.title }}</p>
+                    <p>{{ ticket.description }}</p>
                     <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
+                </div>
+            {% endfor %}
+
+            {% for review in reviews %}
+                <div class="flux-review">
+                    <div class="review-head">
+                        <div class="review-leftt">
+                            <p>{{ review.user }} a publié une critique</p>
+                            <p>{{ review.headline }} - {{ review.rating }}</p>
+                            <p>{{ review.body }}</p>
+                        </div>
+                        <div class="review-right">
+                            <p>{{ review.time_created }}</p>
+                        </div>
+                    </div>
+
+                    <div class="flux-ticket">
+                        <p>Ticket - {{ review.ticket.user }}</p>
+                        <p>{{ review.ticket.title }}</p>
+                        <p>{{ review.ticket.description }}</p>
+                        <img class="flux-ticket-img" src="{{ review.ticket.image.url }}" alt="Couverture - {{ review.ticket.title }}">
+                    </div>
                 </div>
             {% endfor %}
         </div>
