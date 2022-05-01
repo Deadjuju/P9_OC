@@ -1,15 +1,17 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
+from authentication.models import User
 from . import forms, models
 
 
 @login_required
 def home(request):
-
     tickets = models.Ticket.objects.all()
     reviews = models.Review.objects.all()
 
@@ -58,6 +60,7 @@ class CreateTicketView(LoginRequiredMixin, CreateView):
 #         return super().form_valid(form)
 #
 
+
 @login_required
 def create_review(request):
     ticket_form = forms.TicketForm()
@@ -80,3 +83,55 @@ def create_review(request):
                   'reviews/create-review.html',
                   context={'ticket_form': ticket_form,
                            'review_form': review_form})
+
+
+@login_required
+def subscribers_subscriptions(request):
+    form = forms.SubscriberForm()
+    context = {'form': form}
+
+    # display subscriptions
+    subscriptions = models.UserFollows.objects.filter(user=request.user)
+    context['subscriptions'] = subscriptions
+
+    # display subscribers
+    subscribers = models.UserFollows.objects.filter(followed_user=request.user)
+    context['subscribers'] = subscribers
+
+    if request.method == "POST":
+
+        # followed_user = get_object_or_404(User, username=request.POST['followed_user'])
+
+        form = forms.SubscriberForm(request.POST)
+
+        # get the searched user
+        try:
+            new_followed_user = User.objects.get(username=request.POST['followed_user'])
+        except ObjectDoesNotExist:
+            error_message = f"--- {request.POST['followed_user'].upper()} --- n'existe pas dans la bdd."
+            messages.add_message(request, messages.ERROR, message=error_message)
+            return render(request,
+                          "reviews/subs.html",
+                          context=context)
+        else:
+            # case where one is looking for oneself
+            if new_followed_user.username == request.user.username:
+                error_message = " --- Vous ne pouvez pas vous suivre vous même! --- "
+                messages.add_message(request, messages.ERROR, message=error_message)
+
+                return render(request,
+                              "reviews/subs.html",
+                              context=context)
+
+            # subscription registration
+            new_subscription = models.UserFollows(user=request.user, followed_user=new_followed_user)
+            new_subscription.save()
+            success_message = f"Vous suivez désormais {new_subscription.followed_user}"
+            messages.add_message(request, messages.SUCCESS, message=success_message)
+            return render(request,
+                          "reviews/subs.html",
+                          context=context)
+
+    return render(request,
+                  "reviews/subs.html",
+                  context=context)

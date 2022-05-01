@@ -50,7 +50,7 @@
                     {% if user.is_authenticated %}
                         <li class="nav-right-link"><a href="{% url 'home' %}">Flux</a></li>
                         <li class="nav-right-link"><a href="#">Posts</a></li>
-                        <li class="nav-right-link"><a href="#">Abonnements</a></li>
+                        <li class="nav-right-link"><a href="{% url 'subscribers' %}">Abonnements</a></li>
                         <li class="nav-right-link"><a href="{% url 'logout' %}">Se déconnecter</a></li>
                     {% endif %}
                 </ul>

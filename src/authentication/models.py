@@ -5,3 +5,6 @@ from django.db import models
 class User(AbstractUser):
     
     profile_photo = models.ImageField(verbose_name='photo de profil')
+
+    def __str__(self):
+        return f"{self.username}"
