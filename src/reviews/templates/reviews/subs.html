@@ -17,13 +17,14 @@
       {% for message in messages %}
           <div class="msg-{{ message.tags }}">
             <p>{{ message|safe }}</p>
+          </div>
         {% endfor %}
     {% endif %}
 
     <div class="follow-users">
         <h2>Suivre d'autres utilisateurs</h2>
 
-        <form action="" method="POST">
+        <form action="{% url 'subscribers' %}" method="POST">
 
           {% csrf_token %}
           {{ form.as_p }}
@@ -44,8 +45,16 @@
             {% for sub in subscriptions %}
             <li>
               <div class="subscriptions-list">
-                <span class="subscriptions-name">{{ sub.followed_user }}</span> 
-                <span class="subscriptions-button"><a href="#">Se désabonner</a></span>
+                <span class="subscriptions-name">{{ sub.followed_user }}</span>
+                <span class="subscriptions-button">
+                    <form action="{% url 'unsubscribe' sub.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="general-btn" type="submit"
+                                onclick="return confirm('Voulez-vous vraiment vous désabonner de {{ sub.followed_user }}?');">
+                          Se désabonner
+                        </button>
+                    </form>
+                </span>
               </div>
             </li>
             {% endfor %}

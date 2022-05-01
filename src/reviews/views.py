@@ -102,8 +102,6 @@ def subscribers_subscriptions(request):
 
         # followed_user = get_object_or_404(User, username=request.POST['followed_user'])
 
-        form = forms.SubscriberForm(request.POST)
-
         # get the searched user
         try:
             new_followed_user = User.objects.get(username=request.POST['followed_user'])
@@ -135,3 +133,14 @@ def subscribers_subscriptions(request):
     return render(request,
                   "reviews/subs.html",
                   context=context)
+
+
+@login_required
+def unsubscribe(request, subscribers_id):
+    if request.method == "POST":
+        user_to_unsubscribe = get_object_or_404(models.UserFollows, id=subscribers_id)
+        user_to_unsubscribe.delete()
+
+        success_message = f"Vous ne suivez plus {user_to_unsubscribe.followed_user}."
+        messages.add_message(request, messages.SUCCESS, message=success_message)
+        return redirect('subscribers')
