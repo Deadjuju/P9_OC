@@ -6,16 +6,12 @@
 
 
 {% block content %}
-
-  <div class="find-users">
-
-    <p>
-      {{ error_message }}
-    </p>
+<!-- Subscriptions page -->
+    <div class="subs-content">
 
     {% if messages %}
       {% for message in messages %}
-          <div class="msg-{{ message.tags }}">
+          <div class="subs-msg-{{ message.tags }}">
             <p>{{ message|safe }}</p>
           </div>
         {% endfor %}
@@ -24,63 +20,60 @@
     <div class="follow-users">
         <h2>Suivre d'autres utilisateurs</h2>
 
-        <form action="{% url 'subscribers' %}" method="POST">
+        <form class="follow-users-form" action="{% url 'subscribers' %}" method="POST">
 
-          {% csrf_token %}
-          {{ form.as_p }}
-
-          <button class="subscribers-btn general-btn" type="submit" >Envoyer</button>
+            {% csrf_token %}
+            {{ form.as_p }}
+          <button class="follow-btn general-btn" type="submit" >S'abonner</button>
 
         </form>
     </div>
 
     <div class="subscriptions">
-      <h2>Abonnements</h2>
-      <div class="subscriptions-results">
+        <h2>Abonnements</h2>
+        <div class="subscriptions-results">
 
-        {% if subscriptions|length_is:"0" %}
-          <p>Vous ne suivez personne pour l'instant.</p>
-        {% else %}
-          <ul>
-            {% for sub in subscriptions %}
-            <li>
-              <div class="subscriptions-list">
-                <span class="subscriptions-name">{{ sub.followed_user }}</span>
-                <span class="subscriptions-button">
-                    <form action="{% url 'unsubscribe' sub.id %}" method="POST">
-                        {% csrf_token %}
-                        <button class="general-btn" type="submit"
-                                onclick="return confirm('Voulez-vous vraiment vous désabonner de {{ sub.followed_user }}?');">
-                          Se désabonner
-                        </button>
-                    </form>
-                </span>
-              </div>
-            </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
+            {% if subscriptions|length_is:"0" %}
+                <p>Vous ne suivez personne pour l'instant.</p>
+            {% else %}
+                <ul>
+                    {% for sub in subscriptions %}
+                    <li>
+                        <div class="subscriptions-list">
+                            <span class="subscriptions-name">
+                                {{ sub.followed_user }}
+                            </span>
+                            <form class="subscriptions-button" action="{% url 'unsubscribe' sub.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="general-btn unfollow-btn" type="submit"
+                                        onclick="return confirm('Voulez-vous vraiment vous désabonner de {{ sub.followed_user }}?');">
+                                    Se désabonner
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-      </div>
+        </div>
     </div>
 
     <div class="subscribers">
-      <h2>Abonnés</h2>
-      <div class="subscribers-results">
+        <h2>Abonnés</h2>
+        <div class="subscribers-results">
 
-        {% if subscribers|length_is:"0" %}
-          <p>Vous n'êtes suivi par personne pour le moment.</p>
-        {% else %}
-          <ul>
-            {% for sub in subscribers %}
-              <li>{{ sub.user }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
+            {% if subscribers|length_is:"0" %}
+                <p>Vous n'êtes suivi par personne pour le moment.</p>
+            {% else %}
+                <ul>
+                    {% for sub in subscribers %}
+                        <li>{{ sub.user }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-
-      </div>
-
+        </div>
     </div>
 
   </div>
