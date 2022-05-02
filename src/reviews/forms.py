@@ -28,6 +28,12 @@ class SubscriberForm(forms.ModelForm):
         model = models.UserFollows
         fields = ["followed_user", ]
 
+    def clean(self):
+        cleaned_data = super(SubscriberForm, self).clean()
+        followed_user = cleaned_data.get('followed_user')
+        if models.UserFollows.objects.filter(followed_user=followed_user).exists():
+            raise forms.ValidationError('Category already exists')
+
     # def clean(self):
     #     cleaned_data = super(SubscriberForm, self).clean()
     #     followed_user = cleaned_data.get('followed_user')

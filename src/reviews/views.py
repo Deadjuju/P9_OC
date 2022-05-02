@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -104,7 +105,7 @@ def subscribers_subscriptions(request):
 
         # get the searched user
         try:
-            new_followed_user = User.objects.get(username=request.POST['followed_user'])
+            new_followed_user = get_object_or_404(User, username=request.POST['followed_user'])
         except ObjectDoesNotExist:
             error_message = f"--- {request.POST['followed_user'].upper()} --- n'existe pas dans la bdd."
             messages.add_message(request, messages.ERROR, message=error_message)
@@ -116,19 +117,26 @@ def subscribers_subscriptions(request):
             if new_followed_user.username == request.user.username:
                 error_message = " --- Vous ne pouvez pas vous suivre vous même! --- "
                 messages.add_message(request, messages.ERROR, message=error_message)
-
                 return render(request,
                               "reviews/subs.html",
                               context=context)
 
             # subscription registration
             new_subscription = models.UserFollows(user=request.user, followed_user=new_followed_user)
-            new_subscription.save()
-            success_message = f"Vous suivez désormais {new_subscription.followed_user}"
-            messages.add_message(request, messages.SUCCESS, message=success_message)
-            return render(request,
-                          "reviews/subs.html",
-                          context=context)
+            try:
+                new_subscription.save()
+            except IntegrityError:
+                error_message = f"Vous suivez déjà {new_followed_user}."
+                messages.add_message(request, messages.ERROR, message=error_message)
+                return render(request,
+                              "reviews/subs.html",
+                              context=context)
+            else:
+                success_message = f"Vous suivez désormais {new_subscription.followed_user}"
+                messages.add_message(request, messages.SUCCESS, message=success_message)
+                return render(request,
+                              "reviews/subs.html",
+                              context=context)
 
     return render(request,
                   "reviews/subs.html",
