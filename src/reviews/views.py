@@ -1,3 +1,5 @@
+from itertools import chain
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,7 +16,6 @@ from . import forms, models
 
 @login_required
 def home(request):
-
     # tickets = models.Ticket.objects.filter(user__in__followed_by=request.user)
 
     followed_users = models.UserFollows.objects.filter(user=request.user)
@@ -29,10 +30,18 @@ def home(request):
     # tickets = models.Ticket.objects.all()
     # reviews = models.Review.objects.all()
 
+    #  chain the 2 parameters
+    tickets_and_reviews = sorted(
+        chain(tickets, reviews),
+        key=lambda instance: instance.time_created,
+        reverse=True
+    )
+
     return render(request,
                   'reviews/home.html',
-                  context={"tickets": tickets,
-                           "reviews": reviews})
+                  context={"tickets_and_reviews": tickets_and_reviews,})
+                  # context={"tickets": tickets,
+                  #          "reviews": reviews})
 
 
 # @login_required
@@ -101,7 +110,6 @@ def create_review(request):
 
 @login_required
 def reply_to_a_ticket(request, ticket_id):
-
     ticket = get_object_or_404(models.Ticket, pk=ticket_id)
     review_form = forms.ReviewForm()
 

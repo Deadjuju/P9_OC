@@ -253,20 +253,6 @@ nav a {
     width: 25%;
     margin: 10px 0;
 }
-@media (max-width: 1000px) {
-    .flux-content {
-        width: 99%
-    }
-    .flux-btns a {
-        margin: 5px 10px;
-        padding: 4px 0;
-        height: 35px;
-        font-size: 1.2em;
-    }
-    .flux-ticket-img {
-        width: 45%;
-    }
-}
 .ticket-head {
     display: flex;
     justify-content: space-between;
@@ -283,7 +269,7 @@ nav a {
     height: 50px;
     width: 100%;
     margin-bottom: 5px;
-    padding: 10px;
+    padding-top: 12px;
     text-decoration: none;
     text-align: center;
 }
@@ -294,6 +280,24 @@ nav a {
     display: flex;
     justify-content: space-between;
 }
+@media (max-width: 1000px) {
+    .flux-content {
+        width: 99%
+    }
+    .flux-btns a {
+        margin: 5px 10px;
+        padding: 4px 0;
+        height: 35px;
+        font-size: 1.2em;
+    }
+    .flux-ticket-img {
+        width: 45%;
+    }
+    .ticket-left {
+        width: 70%
+    }
+}
+
 
 
 /* ------------- Subscriptions page ------------- */

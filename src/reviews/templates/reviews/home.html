@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load litreview_extras %}
 
 {% block title %}
     <title>LITReview - Accueil</title>
@@ -21,50 +22,51 @@
         </div>
 
         <div class="flux">
-            {% if tickets|length_is:"0" %}
-                <p>RIEN</p>
+            {% if tickets_and_reviews|length_is:"0" %}
+                <p>Vous n'avez pas encore de flux.<br>
+                    Suivez vite de nouvelles personnes pour découvrir votre flux! </p>
             {% else %}
-                {% for ticket in tickets %}
-                    <div class="flux-ticket">
-                        <div class="ticket-head">
-                            <div class="ticket-left">
-                                <p><strong>{{ ticket.user }} a demandé une critique</strong></p>
-                                <p>{{ ticket.title }}</p>
-                                <p>{{ ticket.description }}</p>
-                                <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
-                            </div>
-                            <div class="ticket-right">
-                                <p>{{ ticket.time_created }}</p>
-                                <a class="general-btn reply-btn" href="{% url 'reply' ticket.id %}">Créer une critique</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
+                {% for instance in tickets_and_reviews %}
 
-            {% if reviews|length_is:"0" %}
-                <p>RIEN</p>
-            {% else %}
-                {% for review in reviews %}
-                    <div class="flux-review">
-                        <div class="review-head">
-                            <div class="review-leftt">
-                                <p>{{ review.user }} a publié une critique</p>
-                                <p>{{ review.headline }} - {{ review.rating }}</p>
-                                <p>{{ review.body }}</p>
-                            </div>
-                            <div class="review-right">
-                                <p>{{ review.time_created }}</p>
-                            </div>
-                        </div>
-
+                    {% if instance|model_type == "Ticket" %}
                         <div class="flux-ticket">
-                            <p>Ticket - {{ review.ticket.user }}</p>
-                            <p>{{ review.ticket.title }}</p>
-                            <p>{{ review.ticket.description }}</p>
-                            <img class="flux-ticket-img" src="{{ review.ticket.image.url }}" alt="Couverture - {{ review.ticket.title }}">
+                            <div class="ticket-head">
+                                <div class="ticket-left">
+                                    <p><strong>{{ instance.user }} a demandé une critique</strong></p>
+                                    <p>{{ instance.title }}</p>
+                                    <p>{{ instance.description }}</p>
+                                    <img class="flux-ticket-img" src="{{ instance.image.url }}" alt="Couverture - {{ instance.title }}">
+                                </div>
+                                <div class="ticket-right">
+                                    <p>{{ instance.time_created }}</p>
+                                    <a class="general-btn reply-btn" href="{% url 'reply' instance.id %}">Créer une critique</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                    {% elif instance|model_type == "Review" %}
+
+                        <div class="flux-review">
+                            <div class="review-head">
+                                <div class="review-left">
+                                    <p>{{ instance.user }} a publié une critique</p>
+                                    <p>{{ instance.headline }} - {{ instance.rating }}</p>
+                                    <p>{{ instance.body }}</p>
+                                </div>
+                                <div class="review-right">
+                                    <p>{{ instance.time_created }}</p>
+                                </div>
+                            </div>
+
+                            <div class="flux-ticket">
+                                <p>Ticket - {{ instance.ticket.user }}</p>
+                                <p>{{ instance.ticket.title }}</p>
+                                <p>{{ instance.ticket.description }}</p>
+                                <img class="flux-ticket-img" src="{{ instance.ticket.image.url }}" alt="Couverture - {{ instance.ticket.title }}">
+                            </div>
+                        </div>
+                    {% endif %}
+
                 {% endfor %}
             {% endif %}
         </div>
