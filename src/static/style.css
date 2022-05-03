@@ -267,6 +267,14 @@ nav a {
         width: 45%;
     }
 }
+.ticket-head {
+    display: flex;
+    justify-content: space-between;
+}
+.review-head {
+    display: flex;
+    justify-content: space-between;
+}
 
 
 /* ------------- Subscriptions page ------------- */

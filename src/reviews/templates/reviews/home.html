@@ -23,10 +23,17 @@
         <div class="flux">
             {% for ticket in tickets %}
                 <div class="flux-ticket">
-                    <p><strong>{{ ticket.user }} a demandé une critique</strong></p>
-                    <p>{{ ticket.title }}</p>
-                    <p>{{ ticket.description }}</p>
-                    <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
+                    <div class="ticket-head">
+                        <div class="ticket-leftt">
+                            <p><strong>{{ ticket.user }} a demandé une critique</strong></p>
+                            <p>{{ ticket.title }}</p>
+                            <p>{{ ticket.description }}</p>
+                            <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
+                        </div>
+                        <div class="ticket-leftt">
+                            <p>{{ ticket.time_created }}</p>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
 
