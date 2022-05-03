@@ -33,8 +33,9 @@
                                 <p>{{ ticket.description }}</p>
                                 <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
                             </div>
-                            <div class="ticket-left">
+                            <div class="ticket-right">
                                 <p>{{ ticket.time_created }}</p>
+                                <a class="general-btn reply-btn" href="{% url 'reply' ticket.id %}">Créer une critique</a>
                             </div>
                         </div>
                     </div>

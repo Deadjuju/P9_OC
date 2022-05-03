@@ -271,6 +271,25 @@ nav a {
     display: flex;
     justify-content: space-between;
 }
+.ticket-left {
+    width: 80%
+}
+.ticket-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.ticket-right a {
+    height: 50px;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+.ticket-right a:hover {
+    color: yellowgreen;
+}
 .review-head {
     display: flex;
     justify-content: space-between;

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="reply-content">
+
+    <div class="reply-content-ticket">
+        <p>Vous êtes en train de poster en réponse à</p>
+    <!--ticket-->
+        <div class="flux-ticket">
+            <div class="ticket-head">
+                <div class="ticket-left">
+                    <p><strong>{{ ticket.user }} a demandé une critique</strong></p>
+                    <p>{{ ticket.title }}</p>
+                    <p>{{ ticket.description }}</p>
+                    <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
+                </div>
+                <div class="ticket-right">
+                    <p>{{ ticket.time_created }}</p>
+                    <a class="general-btn reply-btn" href="#">Créer une critique</a>
+                </div>
+            </div>
+        </div>
+    <!-- end ticket -->
+    </div>
+
+    <div class="reply-content-review">
+    <!--    review -->
+        <form action="" class="reply-form" method="POST">
+            {% csrf_token %}
+
+            {{ review_form.as_p }}
+
+            <button class="create-ticket-btn general-btn" type="submit" >Répondre</button>
+        </form>
+    <!--    end review -->
+    </div>
+
+</div>
+
+
+{% endblock content %}

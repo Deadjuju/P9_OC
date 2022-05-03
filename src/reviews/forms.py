@@ -18,6 +18,7 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = models.Review
         fields = ["rating", "headline", "body", ]
+        labels = ["Note", "Titre", "Commentaire", ]
 
 
 class SubscriberForm(forms.ModelForm):

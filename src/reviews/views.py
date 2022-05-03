@@ -100,6 +100,27 @@ def create_review(request):
 
 
 @login_required
+def reply_to_a_ticket(request, ticket_id):
+
+    ticket = get_object_or_404(models.Ticket, pk=ticket_id)
+    review_form = forms.ReviewForm()
+
+    if request.method == "POST":
+        review_form = forms.ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+        return redirect('home')
+
+    context = {"review_form": review_form, "ticket": ticket}
+    return render(request,
+                  'reviews/reply.html',
+                  context=context)
+
+
+@login_required
 def subscribers_subscriptions(request):
     form = forms.SubscriberForm()
     context = {'form': form}
