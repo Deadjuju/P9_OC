@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -13,8 +14,23 @@ from . import forms, models
 
 @login_required
 def home(request):
-    tickets = models.Ticket.objects.all()
-    reviews = models.Review.objects.all()
+
+    # tickets = models.Ticket.objects.filter(user__in__followed_by=request.user)
+
+    followed_users = models.UserFollows.objects.filter(user=request.user)
+    subscriptions = [user.followed_user for user in followed_users]
+    print(f"Users: {subscriptions}")
+
+    users_filter = Q(user__in=subscriptions) | Q(user=request.user)
+    tickets = models.Ticket.objects.filter(users_filter)
+    reviews = models.Review.objects.filter(users_filter)
+
+    # tickets = models.Ticket.objects.all()
+    # reviews = models.Review.objects.all()
+
+    print(f"Liste des tickets: {list(tickets)}")
+    print(tickets[0].image.url)
+    print(tickets[0].image)
 
     return render(request,
                   'reviews/home.html',

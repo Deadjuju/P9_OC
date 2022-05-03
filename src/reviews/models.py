@@ -21,6 +21,9 @@ class Ticket(models.Model):
         super().save(*args, **kwargs)
         self.resize_image()
 
+    def __str__(self):
+        return f"{self.title} - {self.user}"
+
 
 class Review(models.Model):
     RATING_CHOICES = [(0, "- 0"),
