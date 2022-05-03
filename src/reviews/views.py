@@ -21,16 +21,13 @@ def home(request):
     subscriptions = [user.followed_user for user in followed_users]
     print(f"Users: {subscriptions}")
 
+    # display feed according to subscriptions
     users_filter = Q(user__in=subscriptions) | Q(user=request.user)
     tickets = models.Ticket.objects.filter(users_filter)
     reviews = models.Review.objects.filter(users_filter)
 
     # tickets = models.Ticket.objects.all()
     # reviews = models.Review.objects.all()
-
-    print(f"Liste des tickets: {list(tickets)}")
-    print(tickets[0].image.url)
-    print(tickets[0].image)
 
     return render(request,
                   'reviews/home.html',

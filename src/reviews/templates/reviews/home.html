@@ -21,43 +21,51 @@
         </div>
 
         <div class="flux">
-            {% for ticket in tickets %}
-                <div class="flux-ticket">
-                    <div class="ticket-head">
-                        <div class="ticket-left">
-                            <p><strong>{{ ticket.user }} a demandé une critique</strong></p>
-                            <p>{{ ticket.title }}</p>
-                            <p>{{ ticket.description }}</p>
-                            <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
-                        </div>
-                        <div class="ticket-left">
-                            <p>{{ ticket.time_created }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-
-            {% for review in reviews %}
-                <div class="flux-review">
-                    <div class="review-head">
-                        <div class="review-leftt">
-                            <p>{{ review.user }} a publié une critique</p>
-                            <p>{{ review.headline }} - {{ review.rating }}</p>
-                            <p>{{ review.body }}</p>
-                        </div>
-                        <div class="review-right">
-                            <p>{{ review.time_created }}</p>
-                        </div>
-                    </div>
-
+            {% if tickets|length_is:"0" %}
+                <p>RIEN</p>
+            {% else %}
+                {% for ticket in tickets %}
                     <div class="flux-ticket">
-                        <p>Ticket - {{ review.ticket.user }}</p>
-                        <p>{{ review.ticket.title }}</p>
-                        <p>{{ review.ticket.description }}</p>
-                        <img class="flux-ticket-img" src="{{ review.ticket.image.url }}" alt="Couverture - {{ review.ticket.title }}">
+                        <div class="ticket-head">
+                            <div class="ticket-left">
+                                <p><strong>{{ ticket.user }} a demandé une critique</strong></p>
+                                <p>{{ ticket.title }}</p>
+                                <p>{{ ticket.description }}</p>
+                                <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
+                            </div>
+                            <div class="ticket-left">
+                                <p>{{ ticket.time_created }}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            {% if reviews|length_is:"0" %}
+                <p>RIEN</p>
+            {% else %}
+                {% for review in reviews %}
+                    <div class="flux-review">
+                        <div class="review-head">
+                            <div class="review-leftt">
+                                <p>{{ review.user }} a publié une critique</p>
+                                <p>{{ review.headline }} - {{ review.rating }}</p>
+                                <p>{{ review.body }}</p>
+                            </div>
+                            <div class="review-right">
+                                <p>{{ review.time_created }}</p>
+                            </div>
+                        </div>
+
+                        <div class="flux-ticket">
+                            <p>Ticket - {{ review.ticket.user }}</p>
+                            <p>{{ review.ticket.title }}</p>
+                            <p>{{ review.ticket.description }}</p>
+                            <img class="flux-ticket-img" src="{{ review.ticket.image.url }}" alt="Couverture - {{ review.ticket.title }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 
