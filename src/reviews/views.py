@@ -143,13 +143,11 @@ def subscribers_subscriptions(request):
 
     if request.method == "POST":
 
-        # followed_user = get_object_or_404(User, username=request.POST['followed_user'])
-
         # get the searched user
         try:
-            new_followed_user = get_object_or_404(User, username=request.POST['followed_user'])
+            new_followed_user = User.objects.get(username=request.POST['followed_user'])
         except ObjectDoesNotExist:
-            error_message = f"--- {request.POST['followed_user'].upper()} --- n'existe pas dans la bdd."
+            error_message = f"--- {request.POST['followed_user'].upper()} --- n'existe pas dans la base de donnée."
             messages.add_message(request, messages.ERROR, message=error_message)
             return render(request,
                           "reviews/subs.html",
