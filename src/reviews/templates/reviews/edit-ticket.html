@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Éditer un ticket</title>
+{% endblock title %}
+
+{% block content %}
+
+    <div class="edit-ticket-form">
+        <h2>Modifier votre ticket</h2>
+
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ ticket_form.as_p }}
+            <div class="edit-ticket-img">
+                <p>Image</p>
+                <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+            </div>
+            <button class="create-ticket-btn general-btn" type="submit" >Mettre à jour</button>
+        </form>
+    </div>
+
+{% endblock %}

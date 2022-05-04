@@ -90,6 +90,34 @@ class CreateTicketView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+@login_required
+def edit_ticket(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, pk=ticket_id)
+    ticket_form = forms.TicketForm(instance=ticket)
+    if request.method == "POST":
+        ticket_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
+        if ticket_form.is_valid():
+            ticket.save()
+
+            return redirect("posts")
+
+    context = {'ticket_form': ticket_form,
+               'ticket': ticket}
+    return render(request,
+                  "reviews/edit-ticket.html",
+                  context=context)
+
+
+@login_required
+def delete_ticket(request, ticket_id):
+    if request.method == "POST":
+        ticket_to_delete = get_object_or_404(models.Ticket, id=ticket_id)
+        ticket_to_delete.delete()
+        success_message = f"Le billet {ticket_to_delete.title} a bien été supprimé."
+        messages.add_message(request, messages.SUCCESS, message=success_message)
+        return redirect('posts')
+
+
 # class CreateReviewView(LoginRequiredMixin, CreateView):
 #     model = models.Review
 #     template_name = 'review/create-review.html'
@@ -124,6 +152,18 @@ def create_review(request):
                   'reviews/create-review.html',
                   context={'ticket_form': ticket_form,
                            'review_form': review_form})
+
+
+@login_required
+def edit_review(request, review_id):
+    review = get_object_or_404(models.Review, pk=review_id)
+    ticket = None
+    ticket_form = forms.TicketForm()
+    context = {'ticket_form': ticket_form,
+               'ticket': ticket}
+    return render(request,
+                  "reviews/edit-review.html",
+                  context=context)
 
 
 @login_required
