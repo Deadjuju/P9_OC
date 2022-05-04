@@ -1,0 +1,26 @@
+<div class="flux-review">
+    <div class="review-head">
+        <div class="review-left">
+            <p>
+                {{ review.user }} a publié une critique
+            </p>
+            <p>
+                {{ review.headline }} - {{ review.rating }}
+                <i class="fas fa-star star rating"></i>
+            </p>
+            <p>
+                {{ review.body }}
+            </p>
+        </div>
+        <div class="review-right">
+            <p>{{ review.time_created }}</p>
+        </div>
+    </div>
+
+    <div class="flux-ticket">
+        <p>Ticket - {{ review.ticket.user }}</p>
+        <p>{{ review.ticket.title }}</p>
+        <p>{{ review.ticket.description }}</p>
+        <img class="flux-ticket-img" src="{{ review.ticket.image.url }}" alt="Couverture - {{ review.ticket.title }}">
+    </div>
+</div>

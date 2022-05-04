@@ -30,31 +30,10 @@
 
                     {% if instance|model_type == "Ticket" %}
                         {% include 'reviews/partials/ticket-snippet.html' with ticket=instance %}
+
                     {% elif instance|model_type == "Review" %}
+                        {% include 'reviews/partials/review-snippet.html' with review=instance %}
 
-                        <div class="flux-review">
-                            <div class="review-head">
-                                <div class="review-left">
-                                    <p>{{ instance.user }} a publié une critique</p>
-                                    <p>
-                                        {{ instance.headline }} - {{ instance.rating }}
-                                        <i class="fas fa-star star rating"></i>
-                                    </p>
-                                    <p>{{ instance.body }}
-                                    </p>
-                                </div>
-                                <div class="review-right">
-                                    <p>{{ instance.time_created }}</p>
-                                </div>
-                            </div>
-
-                            <div class="flux-ticket">
-                                <p>Ticket - {{ instance.ticket.user }}</p>
-                                <p>{{ instance.ticket.title }}</p>
-                                <p>{{ instance.ticket.description }}</p>
-                                <img class="flux-ticket-img" src="{{ instance.ticket.image.url }}" alt="Couverture - {{ instance.ticket.title }}">
-                            </div>
-                        </div>
                     {% endif %}
 
                 {% endfor %}

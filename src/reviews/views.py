@@ -46,8 +46,17 @@ def home(request):
 def user_posts(request):
 
     tickets = models.Ticket.objects.filter(user=request.user)
+    reviews = models.Review.objects.filter(user=request.user)
+    # tickets = []
 
-    context = {"tickets": tickets}
+    #  chain the 2 parameters
+    tickets_and_reviews = sorted(
+        chain(tickets, reviews),
+        key=lambda instance: instance.time_created,
+        reverse=True
+    )
+
+    context = {"tickets_and_reviews": tickets_and_reviews, }
     return render(request,
                   'reviews/posts.html',
                   context=context)

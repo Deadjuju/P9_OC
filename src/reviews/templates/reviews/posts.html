@@ -11,8 +11,28 @@
         <div class="posts-header">
             <h2>Vos posts</h2>
             <div class="posts">
-                {% for ticket in tickets %}
-                    {% include 'reviews/partials/ticket-snippet.html' with ticket=ticket %}
+                {% for instance in tickets_and_reviews %}
+                    <div class="posts-instances">
+                        {% if instance|model_type == "Ticket" %}
+                            {% include 'reviews/partials/ticket-snippet.html' with ticket=instance %}
+                            <div class="posts-edit-delete">
+                                <a class="general-btn posts-edit-btn" href="#">✏️  Modifier</a>
+                                <a class="general-btn posts-delete-btn" href="">🗑️ Supprimer</a>
+                            </div>
+
+                        {% elif instance|model_type == "Review" %}
+                            {% include 'reviews/partials/review-snippet.html' with review=instance %}
+                            <div class="posts-edit-delete">
+                                <a class="general-btn posts-edit-btn" href="#">✏️  Modifier</a>
+                                <a class="general-btn posts-delete-btn" href="">🗑️ Supprimer</a>
+                            </div>
+
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p>
+                        Vous n'avez pas encore de posts.
+                    </p>
                 {% endfor %}
             </div>
         </div>
