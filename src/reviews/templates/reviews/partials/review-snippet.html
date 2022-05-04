@@ -1,19 +1,20 @@
+{% load litreview_extras %}
+
 <div class="flux-review">
     <div class="review-head">
         <div class="review-left">
             <p>
-                {{ review.user }} a publié une critique
+                {% get_poster_display review.user %} publié une critique
             </p>
             <p>
-                {{ review.headline }} - {{ review.rating }}
-                <i class="fas fa-star star rating"></i>
+                {{ review.headline }} - <span class="rating"> {% rating_star_display review.rating %} </span>
             </p>
             <p>
                 {{ review.body }}
             </p>
         </div>
         <div class="review-right">
-            <p>{{ review.time_created }}</p>
+            <p>{{ review.time_created|get_posted_at_display }}</p>
         </div>
     </div>
 
