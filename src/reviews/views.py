@@ -39,9 +39,18 @@ def home(request):
 
     return render(request,
                   'reviews/home.html',
-                  context={"tickets_and_reviews": tickets_and_reviews,})
-                  # context={"tickets": tickets,
-                  #          "reviews": reviews})
+                  context={"tickets_and_reviews": tickets_and_reviews, "home_page": True})
+
+
+@login_required
+def user_posts(request):
+
+    tickets = models.Ticket.objects.filter(user=request.user)
+
+    context = {"tickets": tickets}
+    return render(request,
+                  'reviews/posts.html',
+                  context=context)
 
 
 # @login_required

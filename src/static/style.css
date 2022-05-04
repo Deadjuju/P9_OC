@@ -280,6 +280,9 @@ nav a {
     display: flex;
     justify-content: space-between;
 }
+.rating {
+    color: #E4BB23;
+}
 @media (max-width: 1000px) {
     .flux-content {
         width: 99%

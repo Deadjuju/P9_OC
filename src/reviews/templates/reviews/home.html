@@ -29,29 +29,19 @@
                 {% for instance in tickets_and_reviews %}
 
                     {% if instance|model_type == "Ticket" %}
-                        <div class="flux-ticket">
-                            <div class="ticket-head">
-                                <div class="ticket-left">
-                                    <p><strong>{{ instance.user }} a demandé une critique</strong></p>
-                                    <p>{{ instance.title }}</p>
-                                    <p>{{ instance.description }}</p>
-                                    <img class="flux-ticket-img" src="{{ instance.image.url }}" alt="Couverture - {{ instance.title }}">
-                                </div>
-                                <div class="ticket-right">
-                                    <p>{{ instance.time_created }}</p>
-                                    <a class="general-btn reply-btn" href="{% url 'reply' instance.id %}">Créer une critique</a>
-                                </div>
-                            </div>
-                        </div>
-
+                        {% include 'reviews/partials/ticket-snippet.html' with ticket=instance %}
                     {% elif instance|model_type == "Review" %}
 
                         <div class="flux-review">
                             <div class="review-head">
                                 <div class="review-left">
                                     <p>{{ instance.user }} a publié une critique</p>
-                                    <p>{{ instance.headline }} - {{ instance.rating }}</p>
-                                    <p>{{ instance.body }}</p>
+                                    <p>
+                                        {{ instance.headline }} - {{ instance.rating }}
+                                        <i class="fas fa-star star rating"></i>
+                                    </p>
+                                    <p>{{ instance.body }}
+                                    </p>
                                 </div>
                                 <div class="review-right">
                                     <p>{{ instance.time_created }}</p>

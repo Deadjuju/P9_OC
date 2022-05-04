@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load litreview_extras %}
+
+{% block title %}
+    <title>LITReview - Posts de {{ user.username|upper }}</title>
+{% endblock title %}
+
+{% block content %}
+<!-- Posts content -->
+    <div class="posts-content">
+        <div class="posts-header">
+            <h2>Vos posts</h2>
+            <div class="posts">
+                {% for ticket in tickets %}
+                    {% include 'reviews/partials/ticket-snippet.html' with ticket=ticket %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
