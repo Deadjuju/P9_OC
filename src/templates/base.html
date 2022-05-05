@@ -45,15 +45,41 @@
 
             <div class="container-namelinks">
                 <a href="{% url 'home' %}" class="text-homepage">LITReview</a>
+                {% if user.is_authenticated %}
+                    <h3>| {{ user.username }} |</h3>
+                {% endif %}
             </div>
 
             <div class="nav-right">
                 <ul>
                     {% if user.is_authenticated %}
-                        <li class="nav-right-link"><a href="{% url 'home' %}">Flux</a></li>
-                        <li class="nav-right-link"><a href="{% url 'posts' %}">Posts</a></li>
-                        <li class="nav-right-link"><a href="{% url 'subscribers' %}">Abonnements</a></li>
-                        <li class="nav-right-link"><a href="{% url 'logout' %}">Se déconnecter</a></li>
+                        <li class="nav-right-link">
+                            <a href="{% url 'home' %}">
+                                {% if request.resolver_match.url_name == "home" %}
+                                     >
+                                {% endif %}
+                                Flux
+                            </a>
+                        </li>
+                        <li class="nav-right-link">
+                            <a href="{% url 'posts' %}">
+                                {% if request.resolver_match.url_name == "posts" %}
+                                     >
+                                {% endif %}
+                                Posts
+                            </a>
+                        </li>
+                        <li class="nav-right-link">
+                            <a href="{% url 'subscribers' %}">
+                                {% if request.resolver_match.url_name == "subscribers" %}
+                                     >
+                                {% endif %}
+                                Abonnements
+                            </a>
+                        </li>
+                        <li class="nav-right-link"><a href="{% url 'logout' %}">
+                            Se déconnecter</a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
