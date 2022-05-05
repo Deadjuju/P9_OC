@@ -98,7 +98,8 @@ def edit_ticket(request, ticket_id):
         ticket_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
         if ticket_form.is_valid():
             ticket.save()
-
+            success_message = f"La billet < {ticket.title} > a bien été mis à jour."
+            messages.add_message(request, messages.SUCCESS, message=success_message)
             return redirect("posts")
 
     context = {'ticket_form': ticket_form,
@@ -157,13 +158,30 @@ def create_review(request):
 @login_required
 def edit_review(request, review_id):
     review = get_object_or_404(models.Review, pk=review_id)
-    ticket = None
-    ticket_form = forms.TicketForm()
-    context = {'ticket_form': ticket_form,
+    ticket = review.ticket
+    review_form = forms.ReviewForm(instance=review)
+    if request.method == "POST":
+        review_form = forms.ReviewForm(request.POST, instance=review)
+        if review_form.is_valid():
+            review.save()
+            success_message = f"La critique de < {ticket.title} > a bien été mis à jour."
+            messages.add_message(request, messages.SUCCESS, message=success_message)
+            return redirect("posts")
+
+    context = {'review_form': review_form,
                'ticket': ticket}
     return render(request,
                   "reviews/edit-review.html",
                   context=context)
+
+
+@login_required
+def delete_review(request, review_id):
+    review_to_delete = get_object_or_404(models.Review, id=review_id)
+    review_to_delete.delete()
+    success_message = f"La critique de < {review_to_delete.ticket.title} > a bien été supprimé."
+    messages.add_message(request, messages.SUCCESS, message=success_message)
+    return redirect('posts')
 
 
 @login_required

@@ -40,8 +40,16 @@
                         {% elif instance|model_type == "Review" %}
                             {% include 'reviews/partials/review-snippet.html' with review=instance %}
                             <div class="posts-edit-delete">
-                                <a class="general-btn posts-edit-btn" href="">✏️  Modifier</a>
-                                <a class="general-btn posts-delete-btn" href="">🗑️ Supprimer</a>
+                                <a class="general-btn posts-edit-btn" href="{% url 'edit_review' instance.id %}">
+                                    ✏️  Modifier
+                                </a>
+                                <form class="subscriptions-button" action="{% url 'delete_review' instance.id %}" method="POST">
+                                {% csrf_token %}
+                                    <button class="general-btn posts-delete-btn" type="submit"
+                                            onclick="return confirm('Voulez-vous vraiment supprimer la critique de - {{ instance.ticket.title }}? -');">
+                                        🗑️ Supprimer
+                                    </button>
+                                </form>
                             </div>
 
                         {% endif %}

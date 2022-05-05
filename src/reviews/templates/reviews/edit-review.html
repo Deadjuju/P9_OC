@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Éditer une critique</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="edit-review-display">
+        <p>Vous êtes en train de poster en réponse à</p>
+        {% include 'reviews/partials/ticket-snippet.html'%}
+    </div>
+
+    <div class="edit-review-form">
+        <p>Critique</p>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ review_form.as_p }}
+            <button class="create-review-btn general-btn" type="submit" >Mettre à jour</button>
+        </form>
+    </div>
+
+{% endblock %}
