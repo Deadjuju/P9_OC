@@ -9,14 +9,13 @@
     <!-- Signup -->
     <div class="signup-content">
 
-        <h1 class="signup-title">Inscrivez-vous</h1>
+        <h1 class="page-title signup-title">Inscrivez-vous</h1>
 
         <div class="signup">
 
             <form class="signup-form" action="" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-
                 <button class="signup-btn general-btn" type="submit">S'inscrire</button>
             </form>
 
