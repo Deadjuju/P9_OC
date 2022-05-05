@@ -72,7 +72,7 @@ class CreateTicketView(LoginRequiredMixin, CreateView):
 
 
 @login_required
-def edit_ticket(request, ticket_id):
+def edit_ticket(request, ticket_id: int):
     ticket = get_object_or_404(models.Ticket, pk=ticket_id)
     if request.user == ticket.user:
         ticket_form = forms.TicketForm(instance=ticket)
@@ -94,7 +94,7 @@ def edit_ticket(request, ticket_id):
 
 
 @login_required
-def delete_ticket(request, ticket_id):
+def delete_ticket(request, ticket_id: int):
     if request.method == "POST":
         ticket_to_delete = get_object_or_404(models.Ticket, id=ticket_id)
         ticket_to_delete.delete()
@@ -140,7 +140,7 @@ def create_review(request):
 
 
 @login_required
-def edit_review(request, review_id):
+def edit_review(request, review_id: int):
     review = get_object_or_404(models.Review, pk=review_id)
     ticket = review.ticket
     review_form = forms.ReviewForm(instance=review)
@@ -169,23 +169,28 @@ def delete_review(request, review_id):
 
 
 @login_required
-def reply_to_a_ticket(request, ticket_id):
+def reply_to_a_ticket(request, ticket_id: int):
     ticket = get_object_or_404(models.Ticket, pk=ticket_id)
-    review_form = forms.ReviewForm()
+    if not ticket.already_replied:
+        review_form = forms.ReviewForm()
 
-    if request.method == "POST":
-        review_form = forms.ReviewForm(request.POST)
-        if review_form.is_valid():
-            review = review_form.save(commit=False)
-            review.user = request.user
-            review.ticket = ticket
-            review.save()
-        return redirect('home')
+        if request.method == "POST":
+            review_form = forms.ReviewForm(request.POST)
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.user = request.user
+                review.ticket = ticket
+                review.save()
+                ticket.already_replied = True
+                ticket.save(update_fields=['already_replied'])
+            return redirect('home')
 
-    context = {"review_form": review_form, "ticket": ticket}
-    return render(request,
-                  'reviews/reply.html',
-                  context=context)
+        context = {"review_form": review_form,
+                   "ticket": ticket, }
+        return render(request,
+                      'reviews/reply.html',
+                      context=context)
+    return redirect("home")
 
 
 @login_required
@@ -244,7 +249,7 @@ def subscribers_subscriptions(request):
 
 
 @login_required
-def unsubscribe(request, subscribers_id):
+def unsubscribe(request, subscribers_id: int):
     if request.method == "POST":
         user_to_unsubscribe = get_object_or_404(models.UserFollows, id=subscribers_id)
         user_to_unsubscribe.delete()
