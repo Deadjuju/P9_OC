@@ -19,7 +19,10 @@ class Ticket(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.resize_image()
+        try:
+            self.resize_image()
+        except ValueError:
+            pass
 
     def __str__(self):
         return f"{self.title} - {self.user}"

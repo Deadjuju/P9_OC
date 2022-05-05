@@ -20,7 +20,6 @@ def home(request):
 
     followed_users = models.UserFollows.objects.filter(user=request.user)
     subscriptions = [user.followed_user for user in followed_users]
-    print(f"Users: {subscriptions}")
 
     # display feed according to subscriptions
     users_filter = Q(user__in=subscriptions) | Q(user=request.user)
@@ -47,7 +46,6 @@ def user_posts(request):
 
     tickets = models.Ticket.objects.filter(user=request.user)
     reviews = models.Review.objects.filter(user=request.user)
-    # tickets = []
 
     #  chain the 2 parameters
     tickets_and_reviews = sorted(
@@ -60,23 +58,6 @@ def user_posts(request):
     return render(request,
                   'reviews/posts.html',
                   context=context)
-
-
-# @login_required
-# def create_ticket(request):
-#     ticket_form = forms.TicketForm()
-#
-#     if request.method == "POST":
-#         ticket_form = forms.TicketForm(request.POST, request.FILES)
-#         if ticket_form.is_valid():
-#             ticket = ticket_form.save(commit=False)
-#             ticket.user = request.user
-#             ticket.save()
-#         return redirect('home')
-#
-#     return render(request,
-#                   'reviews/create-ticket.html',
-#                   context={'ticket_form': ticket_form})
 
 
 class CreateTicketView(LoginRequiredMixin, CreateView):
@@ -93,20 +74,23 @@ class CreateTicketView(LoginRequiredMixin, CreateView):
 @login_required
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, pk=ticket_id)
-    ticket_form = forms.TicketForm(instance=ticket)
-    if request.method == "POST":
-        ticket_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
-        if ticket_form.is_valid():
-            ticket.save()
-            success_message = f"La billet < {ticket.title} > a bien été mis à jour."
-            messages.add_message(request, messages.SUCCESS, message=success_message)
-            return redirect("posts")
+    if request.user == ticket.user:
+        ticket_form = forms.TicketForm(instance=ticket)
+        if request.method == "POST":
+            ticket_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
+            if ticket_form.is_valid():
+                ticket.save()
+                success_message = f"La billet < {ticket.title} > a bien été mis à jour."
+                messages.add_message(request, messages.SUCCESS, message=success_message)
+                return redirect("posts")
 
-    context = {'ticket_form': ticket_form,
-               'ticket': ticket}
-    return render(request,
-                  "reviews/edit-ticket.html",
-                  context=context)
+        context = {'ticket_form': ticket_form,
+                   'ticket': ticket}
+        return render(request,
+                      "reviews/edit-ticket.html",
+                      context=context)
+    else:
+        return redirect("posts")
 
 
 @login_required
