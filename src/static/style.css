@@ -25,6 +25,13 @@ a {
 
 /* ------------- General ------------- */
 
+input {
+    height: 40px;
+    font-size: 25px;
+}
+.input-name {
+    font-size: 25px;
+}
 .general-btn {
     display: block;
     text-align: center;
@@ -63,7 +70,7 @@ header {
     /* position: fixed; */
     z-index: 998;
     border-bottom: 3px black solid;
-    background-color: aqua;
+    background-color: rgb(110, 193, 235);
 }
 .logo-litreview {
     height: 70%;
@@ -120,7 +127,7 @@ nav a {
 .nav-right li:hover{
     text-decoration: underline;
     font-size: 1.3em;
-    color: #DA0463;
+    color: #da0463;
 }
 
 
@@ -137,7 +144,7 @@ nav a {
 .login {
     height: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     margin: 5px;
     padding: 50px 0;
 }
@@ -145,21 +152,53 @@ nav a {
     display: flex;
     flex-direction: column;
     padding: 25px 10px;
+    margin: 0 auto;
+    min-width: 35%;
+    background-color: floralwhite;
 }
 .login-text {
     font-size: 2em;
     margin: 15px 0;
 }
 .login-btn {
-    width: 100%;
-    margin: 10px 0;
-    padding: 5px 10px;
-    font-size: 1.1em;
+    width: 95%;
+    height: 45px;
+    margin: 20px 0;
+    padding: 9px 10px;
+    font-size: 1.3em;
+    font-weight: bold;
     text-decoration: none;
     font-family: lato, arial;
 }
+.login-registration .login-btn {
+    background-color: #1cc81c;
+}
+.login-registration .login-btn:hover {
+    background-color: hsl(120, 55%, 45%);
+}
 .login-btn:active {
     color: yellowgreen;
+}
+.login-form {
+    padding: 5px 20px;
+    margin: 0 auto;
+}
+.login-form h3 {
+    margin: 10px 0 5px;
+    font-size: 1.5em;
+}
+.login-form input {
+    width: 95%;
+    height: 40px;
+    font-size: 25px;
+}
+@media (max-width: 1000px) {
+    .login-content {
+        width: 20%;
+    }
+    .login-form h3 {
+        font-size: 1.2em;
+    }
 }
 
 

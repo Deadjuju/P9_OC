@@ -19,7 +19,10 @@
             </p>
             <form action="" method="POST">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <h3 class="input-name">Pseudo</h3>
+                {{ form.username }}
+                <h3>Mot de Passe</h3>
+                {{ form.password }}
                 <button class="login-btn general-btn" type="submit">Se connecter</button>
             </form>
         </div>

@@ -81,6 +81,13 @@
                             Se déconnecter</a>
                         </li>
                     {% endif %}
+                    {% if request.resolver_match.url_name == "signup" %}
+                        <li class="nav-right-link">
+                            <a href="{% url 'login' %}">
+                                Accueil
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
