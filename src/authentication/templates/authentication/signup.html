@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
+{% block meta_description %}
+    <meta name="description" content= "Inscrivez-vous au plus vite pour découvrir les plus belles critiques de livres." />
+{% endblock meta_description %}
 {% block title %}
-    <title>Inscription</title>
+    <title>LITReviews | Inscription</title>
 {% endblock title %}
 
 
@@ -11,7 +14,7 @@
 
         <h1 class="page-title signup-title">Inscrivez-vous</h1>
 
-        <div class="signup">
+        <div class="signup general-container">
 
             <form class="signup-form" action="" method="POST">
                 {% csrf_token %}

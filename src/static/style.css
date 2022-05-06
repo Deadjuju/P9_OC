@@ -25,12 +25,33 @@ a {
 
 /* ------------- General ------------- */
 
+body {
+    background: rgb(250,250,250);
+    background: -moz-linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
+    background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fafafa",endColorstr="#e0e0e0",GradientType=1); 
+}
+.general-container {
+    background-color: #fcfdfe;
+    border-radius: 10px;
+    box-shadow: black 0px 0px 4px;
+}
 .page-title {
     font-size: 40px;
 }
 input {
     height: 40px;
     font-size: 25px;
+    background: rgb(250,250,250);
+    background: -moz-linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
+    background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fafafa",endColorstr="#e0e0e0",GradientType=1);
+    padding: 1px 6px;
+    border: none;
+    box-shadow: inset black 2px 2px 3px;
+    outline: 0px solid #e2e7e2;
 }
 .input-name {
     font-size: 25px;
@@ -60,10 +81,6 @@ input {
 
 
 /* ------------- Navigation ------------- */
-
-header {
-    /* margin-bottom: 130px; */
-}
 
 .navbar {
     width: 100%;
@@ -194,7 +211,10 @@ nav a {
     padding: 25px 10px;
     margin: 0 auto;
     min-width: 35%;
-    background-color: floralwhite;
+    transition: all 0.15s ease-in-out;
+}
+.login-content:hover {
+    box-shadow: black 0px 0px 6px;
 }
 .login-text {
     font-size: 30px;
@@ -254,9 +274,8 @@ nav a {
     margin: 15px 5px;
 }
 .signup {
-    background-color:   floralwhite;
-    box-shadow: 2px 2px 1px #555;
     padding: 10px 5px;
+    transition: all 0.15s ease-in-out;
 }
 .signup-form {
     font-size: 1.3em;
@@ -266,15 +285,12 @@ nav a {
 .signup-form input {
     margin: 5px 0;
     padding: 2px;
-    border: none;
-    outline: 0px solid #e2e7e2;
-    transition: outline 0.3s ease-in-out, border 0.1s ease-in-out;
+    transition: outline 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
 }
 .signup-form input:hover {
-    border : solid 2px #555
+    box-shadow: inset black 2px 2px 5px;
 }
 .signup-form input:focus {
-    /* border: none; */
     outline: 5px solid #18a918;
 }
 .signup-form p {
