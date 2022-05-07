@@ -162,8 +162,11 @@ def edit_review(request, review_id: int):
 @login_required
 def delete_review(request, review_id):
     review_to_delete = get_object_or_404(models.Review, id=review_id)
+    ticket = get_object_or_404(models.Ticket, pk=review_to_delete.ticket.pk)
     review_to_delete.delete()
     success_message = f"La critique de < {review_to_delete.ticket.title} > a bien été supprimé."
+    ticket.already_replied = False
+    ticket.save(update_fields=['already_replied'])
     messages.add_message(request, messages.SUCCESS, message=success_message)
     return redirect('posts')
 
