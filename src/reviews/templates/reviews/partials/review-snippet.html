@@ -26,4 +26,21 @@
             <img class="flux-ticket-img" src="{{ review.ticket.image.url }}" alt="Couverture - {{ review.ticket.title }}">
         {% endif %}
     </div>
+    {% if request.resolver_match.url_name == "posts" %}
+        <div class="posts-edit-delete">
+            <div class="general-btn posts-edit-btn">
+                <a role="button" class="posts-link-edit" href="{% url 'edit_review' review.id %}">
+                    ✏️  Modifier
+                </a>
+            </div>
+            <form class="subscriptions-button" action="{% url 'delete_review' review.id %}" method="POST">
+            {% csrf_token %}
+                <button class="general-btn posts-delete-btn" type="submit"
+                        onclick="return confirm('Voulez-vous vraiment supprimer la critique de - {{ review.ticket.title }}? -');">
+                    🗑️ Supprimer
+                </button>
+            </form>
+        </div>
+    {% endif %}
+
 </div>

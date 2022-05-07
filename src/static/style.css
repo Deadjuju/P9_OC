@@ -469,6 +469,49 @@ nav a {
     }
 }
 
+/* ------------- Posts ------------- */
+
+.posts-edit-delete {
+    /* background-color: #da0463; */
+    display: flex;
+    justify-content: end;
+    padding: 10px;
+}
+.posts-edit-btn, .posts-delete-btn {
+    height: 65px;
+    width: 220px;
+    font-size: 20px;
+    margin: 2px 5px;
+    text-align: center;
+    position: relative;
+}
+.posts-edit-btn {
+
+}
+.posts-delete-btn {
+    background-color: #dc143c;
+}
+.posts-delete-btn:hover {
+    background-color: hsl(348, 63%, 46%);
+}
+.posts-link-edit {
+    display: inline-block;
+    /* height: 100%; */
+    margin: auto;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@media (max-width: 1000px) {
+    .posts-edit-btn, .posts-delete-btn {
+        width: 170px;
+        font-size: 15px;
+    
+    }
+}
+
 
 
 /* ------------- Subscriptions page ------------- */

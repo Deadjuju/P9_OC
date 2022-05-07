@@ -21,4 +21,21 @@
                 {% endif %}
             </div>
         </div>
+        {% if request.resolver_match.url_name == "posts" %}
+            <div class="posts-edit-delete">
+                <div class="general-btn posts-edit-btn">
+                    <a role="button" class="posts-link-edit" href="{% url 'edit_ticket' ticket.id %}">
+                        ✏️  Modifier
+                    </a>
+                </div>
+                <form class="subscriptions-button" action="{% url 'delete_ticket' ticket.id %}" method="POST">
+                {% csrf_token %}
+                    <button class="general-btn posts-delete-btn" type="submit"
+                            onclick="return confirm('Voulez-vous vraiment supprimer le billet - {{ ticket.title }}? -');">
+                        🗑️ Supprimer
+                    </button>
+                </form>
+            </div>
+
+        {% endif %}
     </div>
