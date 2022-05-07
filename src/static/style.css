@@ -32,7 +32,13 @@ body {
     background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fafafa",endColorstr="#e0e0e0",GradientType=1); 
 }
+.content {
+    background-color: #da0463;
+}
 .general-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
     background-color: #fcfdfe;
     border-radius: 10px;
     box-shadow: black 0px 0px 4px;
@@ -77,6 +83,12 @@ input {
 }
 .errorlist {
     color: red;
+}
+
+@media (max-width: 1000px) {
+    .general-container {
+        width: 99%;
+    }
 }
 
 
@@ -333,16 +345,18 @@ nav a {
 /* ------------- Home / Flux ------------- */
 
 .flux-content {
-    width: 80%;
     background-color: #F8F8F8;
-    margin: 0 auto;
-    padding: 10px;
+}
+.flux-header h1 {
+    font-size: 45px;
+    margin: 10px 0px 30px;
 }
 .flux-header h3 {
     margin-bottom: 8px;
 }
 .flux-btns {
     display: flex;
+    margin: 30px auto;
 }
 .flux-btns a {
     width: 45%;
@@ -356,12 +370,16 @@ nav a {
 .flux {
     border: 3px solid black;
     background-color: #E1E1E1;
-    margin: 15px 8px;
-    padding: 5px;
+    margin: 15px 20px;
+    padding: 15px;
 }
+.flux-date {
+    font-style: italic;
+}
+/* ||-- Ticket --|| */
 .flux-ticket {
-    border: solid black 2px;
-    background-color: #F2F2F2;
+    border: solid black 1px;
+    background-color: #F8F8F8F2;
     margin: 20px 10px;
     padding: 15px 20px;
 }
@@ -392,17 +410,32 @@ nav a {
 .ticket-right a:hover {
     color: yellowgreen;
 }
+/* ||-- Review --|| */
+.flux-review {
+    border: solid black 2px;
+    background-color: #F2F2F2;
+    margin: 20px 10px;
+    padding: 15px 20px;
+}
 .review-head {
     display: flex;
     justify-content: space-between;
 }
+.review-publisher {
+    font-size: 25px;
+    font-weight: bold;
+}
+.review-headline {
+    font-size: 22px;
+}
 .rating {
     color: #E4BB23;
 }
+.review-ticket-user {
+    font-weight: bold;
+}
+
 @media (max-width: 1000px) {
-    .flux-content {
-        width: 99%
-    }
     .flux-btns a {
         margin: 5px 10px;
         padding: 4px 0;

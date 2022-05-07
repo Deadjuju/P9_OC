@@ -19,12 +19,14 @@ def model_type(instance):
 @register.filter
 def get_posted_at_display(posted_at):
     seconds_ago = (timezone.now() - posted_at).total_seconds()
-    if seconds_ago <= HOUR:
+    if seconds_ago <= MINUTE:
+        return f"Publié il y {int(seconds_ago)} secondes."
+    elif seconds_ago <= HOUR:
         return f"Publié il y a {int(seconds_ago // MINUTE)} minutes."
     elif seconds_ago <= DAY:
         return f"Publié il y a {int(seconds_ago // HOUR)} heures."
     elif seconds_ago <= DAYS:
-        return f"Publié hier, à {posted_at.strftime('%Hh%M')}."
+        return f"Publié hier à {posted_at.strftime('%Hh%M')}."
     return f"Publié le {posted_at.strftime('%d %b %y à %Hh%M')}"
 
 

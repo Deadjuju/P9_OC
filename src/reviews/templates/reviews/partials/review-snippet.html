@@ -3,10 +3,10 @@
 <div class="flux-review">
     <div class="review-head">
         <div class="review-left">
-            <p>
+            <p class="review-publisher">
                 {% get_poster_display review.user %} publié une critique
             </p>
-            <p>
+            <p class="review-headline">
                 {{ review.headline }} - <span class="rating"> {% rating_star_display review.rating %} </span>
             </p>
             <p>
@@ -14,12 +14,12 @@
             </p>
         </div>
         <div class="review-right">
-            <p>{{ review.time_created|get_posted_at_display }}</p>
+            <p class="flux-date">{{ review.time_created|get_posted_at_display }}</p>
         </div>
     </div>
 
     <div class="flux-ticket">
-        <p>Ticket - {{ review.ticket.user }}</p>
+        <p class="review-ticket-user">Ticket - {{ review.ticket.user }}</p>
         <p>{{ review.ticket.title }}</p>
         <p>{{ review.ticket.description }}</p>
         {% if review.ticket.image %}

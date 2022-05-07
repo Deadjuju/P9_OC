@@ -27,15 +27,11 @@
                     Suivez vite de nouvelles personnes pour découvrir votre flux! </p>
             {% else %}
                 {% for instance in tickets_and_reviews %}
-
                     {% if instance|model_type == "Ticket" %}
                         {% include 'reviews/partials/ticket-snippet.html' with ticket=instance %}
-
                     {% elif instance|model_type == "Review" %}
                         {% include 'reviews/partials/review-snippet.html' with review=instance %}
-
                     {% endif %}
-
                 {% endfor %}
             {% endif %}
         </div>
