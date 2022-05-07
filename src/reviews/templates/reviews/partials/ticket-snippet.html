@@ -3,8 +3,10 @@
     <div class="flux-ticket">
         <div class="ticket-head">
             <div class="ticket-left">
-                {% if home_page %}
-                    <p><strong>{% get_poster_display ticket.user %} demandé une critique</strong></p>
+                {% if request.resolver_match.url_name == "home" %}
+                    <p class="ticket-review-title">{% get_poster_display ticket.user %} demandé une critique</p>
+                {% elif request.resolver_match.url_name == "posts" %}
+                    <p><strong>Vous avez publié un ticket</strong></p>
                 {% endif %}
                 <p>{{ ticket.title }}</p>
                 <p>{{ ticket.description }}</p>

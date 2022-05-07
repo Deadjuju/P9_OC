@@ -20,7 +20,7 @@
             <h2>Vos posts</h2>
             <div class="posts">
                 {% for instance in tickets_and_reviews %}
-                    <div class="posts-instances">
+                    <div class="instance">
                         {% if instance|model_type == "Ticket" %}
                             {% include 'reviews/partials/ticket-snippet.html' with ticket=instance %}
                             <div class="posts-edit-delete">

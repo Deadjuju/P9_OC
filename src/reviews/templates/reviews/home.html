@@ -15,7 +15,7 @@
             <h3>Bonjour <strong>{{ user.username }}!</strong></h3>
 
             <div class="flux-btns">
-                <a class="general-btn" href="{% url 'create_ticket' %}">Demander une critique</a>
+                <a class="general-btn create-ticket-btn" href="{% url 'create_ticket' %}">Demander une critique</a>
                 <a class="general-btn" href="{% url 'create_review' %}">Créer une critique</a>
             </div>
             <h2>Votre flux</h2>
@@ -27,11 +27,13 @@
                     Suivez vite de nouvelles personnes pour découvrir votre flux! </p>
             {% else %}
                 {% for instance in tickets_and_reviews %}
-                    {% if instance|model_type == "Ticket" %}
-                        {% include 'reviews/partials/ticket-snippet.html' with ticket=instance %}
-                    {% elif instance|model_type == "Review" %}
-                        {% include 'reviews/partials/review-snippet.html' with review=instance %}
-                    {% endif %}
+                    <div class="instance">
+                        {% if instance|model_type == "Ticket" %}
+                            {% include 'reviews/partials/ticket-snippet.html' with ticket=instance %}
+                        {% elif instance|model_type == "Review" %}
+                            {% include 'reviews/partials/review-snippet.html' with review=instance %}
+                        {% endif %}
+                    </div>
                 {% endfor %}
             {% endif %}
         </div>
