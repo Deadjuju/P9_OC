@@ -5,12 +5,23 @@
 {% endblock title %}
 
 {% block content %}
-    <div class="create-ticket">
+    <div class="create-review general-container">
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            <h2 class="page-title">Créer une critique</h2>
 
-            {{ ticket_form.as_p }}
-            {{ review_form.as_p }}
+            <div>
+                <h4>Livre / Article</h4>
+
+                {% include 'reviews/partials/create-ticket-snippet.html' with form=ticket_form %}
+            </div>
+
+            <hr class="create-review-sep">
+
+            <div>
+                <h4>Critique</h4>
+                {% include 'reviews/partials/create-review-snippet.html' with form=review_form %}
+            </div>
 
             <button class="create-ticket-btn general-btn" type="submit" >Publier</button>
         </form>
