@@ -8,7 +8,7 @@
     <div class="create-review general-container">
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <h2 class="page-title">Créer une critique</h2>
+            <h2>Créer une critique</h2>
 
             <div>
                 <h4>Livre / Article</h4>
@@ -16,7 +16,7 @@
                 {% include 'reviews/partials/create-ticket-snippet.html' with form=ticket_form %}
             </div>
 
-            <hr class="create-review-sep">
+            <hr class="separation-bar">
 
             {% include 'reviews/partials/create-review-snippet.html' with form=review_form %}
 

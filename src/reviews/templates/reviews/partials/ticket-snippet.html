@@ -9,7 +9,7 @@
                     <p><strong>Vous avez publié un ticket</strong></p>
                 {% endif %}
                 <p>{{ ticket.title }}</p>
-                <p>{{ ticket.description }}</p>
+                <p>{{ ticket.description|linebreaks }}</p>
                 {% if ticket.image %}
                     <img class="flux-ticket-img" src="{{ ticket.image.url }}" alt="Couverture - {{ ticket.title }}">
                 {% endif %}

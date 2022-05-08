@@ -5,19 +5,23 @@
 {% endblock title %}
 
 {% block content %}
-    <div class="edit-review-display">
-        <p>Vous êtes en train de poster en réponse à</p>
-        {% include 'reviews/partials/ticket-snippet.html'%}
-    </div>
+    <div class="edit-ticket-form general-container">
+        <h2>Modifier votre critique</h2>
 
-    <div class="edit-review-form">
-        <p>Critique</p>
-        <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+        <div class="edit-review-display reply-content-ticket">
+            <p>Vous êtes en train de poster en réponse à</p>
+            {% include 'reviews/partials/ticket-snippet.html'%}
+        </div>
 
-            {{ review_form.as_p }}
-            <button class="create-review-btn general-btn" type="submit" >Mettre à jour</button>
-        </form>
+        <hr class="separation-bar">
+
+        <div class="edit-review-form reply-content-review">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% include 'reviews/partials/create-review-snippet.html' with form=review_form %}
+                <button class="create-review-btn general-btn" type="submit" >Mettre à jour</button>
+            </form>
+        </div>
     </div>
 
 {% endblock %}

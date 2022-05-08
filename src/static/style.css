@@ -7,6 +7,7 @@
 body {
     background: #F1F1F1;
     font-family: lato, arial;
+    font-size: 17px;
 }
 button{
     border: none;
@@ -84,6 +85,11 @@ input:focus, textarea:focus {
     box-shadow: 0px 0px 0px;
     transform: translate(3px, 3px);
 }
+.separation-bar {
+    width: 100%;
+    margin: 30px auto;
+}
+
 .errorlist {
     color: red;
 }
@@ -552,10 +558,7 @@ nav a {
     display: inline-block;
     margin: 1px 65px
 }
-.create-review-sep {
-    width: 100%;
-    margin: 30px auto;
-}
+
 
 /* ------------- Reply ------------- */
 
@@ -565,7 +568,36 @@ nav a {
 .reply-content-ticket p {
     margin: 15px 0;
 }
-
+.create-image-field {
+    display: flex;
+    flex-direction: column;
+}
+.create-image-field a {
+    color: black;
+}
+.create-image-field a:hover {
+    color: blue;
+}
+.create-image-field input[type="checkbox"] {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    margin-top: 10px;
+}
+.create-image-field input[type="checkbox"]:hover + label {
+    font-size: 1.2em;
+    color: crimson;
+}
+.create-image-field label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+    margin-bottom: 10px;
+}
+.edit-current-img {
+    width: 300px;
+    margin: 6px 0 15px;
+}
 
 
 /* ------------- Subscriptions page ------------- */

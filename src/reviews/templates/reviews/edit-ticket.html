@@ -6,16 +6,18 @@
 
 {% block content %}
 
-    <div class="edit-ticket-form">
+    <div class="edit-ticket-form general-container">
         <h2>Modifier votre ticket</h2>
 
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
-            {{ ticket_form.as_p }}
+            {% include 'reviews/partials/create-ticket-snippet.html' with form=ticket_form %}
             <div class="edit-ticket-img">
-                <p>Image</p>
-                <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+                {% if ticket.image %}
+                    <p>Image actuelle</p>
+                    <img class="edit-current-img" src="{{ ticket.image.url }}" alt="{{ ticket.title }}">
+                {% endif %}
             </div>
             <button class="create-ticket-btn general-btn" type="submit" >Mettre à jour</button>
         </form>
