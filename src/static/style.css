@@ -557,6 +557,15 @@ nav a {
     margin: 30px auto;
 }
 
+/* ------------- Reply ------------- */
+
+.reply-content-ticket {
+    margin-bottom: 50px;
+}
+.reply-content-ticket p {
+    margin: 15px 0;
+}
+
 
 
 /* ------------- Subscriptions page ------------- */

@@ -66,6 +66,15 @@
                                 <div class="nav-right-sub-menu">
                                     <p>| Créer un ticket |</p>
                                 </div>
+                            {% elif request.resolver_match.url_name == "create_review" %}
+                                <div class="nav-right-sub-menu">
+                                    <p>| Créer une critique |</p>
+                                </div>
+                            {% elif request.resolver_match.url_name == "reply" %}
+                                <div class="nav-right-sub-menu">
+                                    <p>| Répondre à un ticket |</p>
+                                </div>
+
                             {% endif %}
                         </li>
                         <li class="nav-right-link">

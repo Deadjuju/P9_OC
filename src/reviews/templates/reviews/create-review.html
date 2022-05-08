@@ -18,10 +18,7 @@
 
             <hr class="create-review-sep">
 
-            <div>
-                <h4>Critique</h4>
-                {% include 'reviews/partials/create-review-snippet.html' with form=review_form %}
-            </div>
+            {% include 'reviews/partials/create-review-snippet.html' with form=review_form %}
 
             <button class="create-ticket-btn general-btn" type="submit" >Publier</button>
         </form>
