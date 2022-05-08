@@ -7,8 +7,6 @@
 
 {% block content %}
 <!-- Subscriptions page -->
-    <div class="subs-content">
-
     {% if messages %}
       {% for message in messages %}
           <div class="subs-msg-{{ message.tags }}">
@@ -16,6 +14,9 @@
           </div>
         {% endfor %}
     {% endif %}
+
+    <div class="subs-content general-container">
+
 
     <div class="follow-users">
         <h2>Suivre d'autres utilisateurs</h2>
@@ -40,9 +41,9 @@
                     {% for sub in subscriptions %}
                     <li>
                         <div class="subscriptions-list">
-                            <span class="subscriptions-name">
-                                {{ sub.followed_user }}
-                            </span>
+                            <div class="subscriptions-name">
+                                <span>{{ sub.followed_user }}</span>
+                            </div>
                             <form class="subscriptions-button" action="{% url 'unsubscribe' sub.id %}" method="POST">
                                 {% csrf_token %}
                                 <button class="general-btn unfollow-btn" type="submit"
@@ -68,7 +69,11 @@
             {% else %}
                 <ul>
                     {% for sub in subscribers %}
-                        <li>{{ sub.user }}</li>
+                        {% if forloop.counter|divisibleby:2 %}
+                            <li class="even-subscribers">{{ sub.user }}</li>
+                        {% else %}
+                            <li class="odd-subscribers">{{ sub.user }}</li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
             {% endif %}

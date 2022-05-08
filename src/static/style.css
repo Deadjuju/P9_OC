@@ -47,14 +47,18 @@ input {
     height: 40px;
     font-size: 25px;
     background: rgb(250,250,250);
-    background: -moz-linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
-    background: -webkit-linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
-    background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(245,245,245,1) 49%, rgba(224,224,224,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fafafa",endColorstr="#e0e0e0",GradientType=1);
+    background: linear-gradient(43deg, rgba(250,250,250,1) 0%, rgba(228,240,243,1) 100%); 
     padding: 1px 6px;
     border: none;
     box-shadow: inset black 2px 2px 3px;
     outline: 0px solid #e2e7e2;
+    transition: outline 0.3s ease-in-out, backgrounf 0.2s ease-in
+}
+input:hover {
+    background: linear-gradient(43deg, #f2f2f2 0%, rgb(228,240,243,1) 100%); 
+}
+input:focus {
+    outline: 5px solid #6ec1eb;
 }
 .input-name {
     font-size: 25px;
@@ -99,10 +103,10 @@ input {
     /* position: fixed; */
     z-index: 998;
     border-bottom: 3px black solid;
-    background: rgb(110,193,235);
-    background: -moz-linear-gradient(112deg, rgba(110,193,235,1) 0%, rgba(61,199,215,1) 53%, rgba(47,54,141,1) 100%);
+    background: #6ec1eb;
+    background: -moz-linear-gradient(112deg, #6ec1eb 0%, #3dc7d7 53%, #2f368d 100%);
     background: -webkit-linear-gradient(112deg, rgba(110,193,235,1) 0%, rgba(61,199,215,1) 53%, rgba(47,54,141,1) 100%);
-    background: linear-gradient(112deg, rgba(110,193,235,1) 0%, rgba(61,199,215,1) 53%, rgba(47,54,141,1) 100%);
+    background: linear-gradient(112deg, rgba(110,193,235,1) 0%, #3dc7d7 53%, rgba(47,54,141,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6ec1eb",endColorstr="#2f368d",GradientType=1); 
 }
 .logo-litreview {
@@ -300,7 +304,7 @@ nav a {
 }
 .signup-form input {
     margin: 5px 0;
-    padding: 2px;
+    padding: 2px 6px;
     transition: outline 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
 }
 .signup-form input:hover {
@@ -485,9 +489,6 @@ nav a {
     text-align: center;
     position: relative;
 }
-.posts-edit-btn {
-
-}
 .posts-delete-btn {
     background-color: #dc143c;
 }
@@ -522,7 +523,12 @@ nav a {
     font-size: 25px;
 }
 .subs-content h2 {
-    background-color: aquamarine;
+    background: rgb(47,54,141);
+    background: -moz-linear-gradient(112deg, rgba(47,54,141,1) 0%, rgba(61,199,215,1) 35%, rgba(110,193,235,1) 100%);
+    background: -webkit-linear-gradient(112deg, rgba(47,54,141,1) 0%, rgba(61,199,215,1) 35%, rgba(110,193,235,1) 100%);
+    background: linear-gradient(112deg, rgba(47,54,141,1) 0%, rgba(61,199,215,1) 35%, rgba(110,193,235,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2f368d",endColorstr="#6ec1eb",GradientType=1);  
+    /* color: #DA0463; */
     text-align: center;
     font-size: 1.2em;
     margin: 2px auto 15px;
@@ -551,7 +557,7 @@ nav a {
 
 .follow-users {
     width: 95%;
-    margin: 5px auto 50px;
+    margin: 5px auto 70px;
     padding: 1px 5px;
 }
 .follow-users-form {
@@ -590,7 +596,7 @@ nav a {
 
 .subscriptions {
     width: 95%;
-    margin: 5px auto 50px;
+    margin: 5px auto 70px;
     padding: 1px 5px;
 }
 .subscriptions-results li {
@@ -599,16 +605,34 @@ nav a {
     padding: 4px 3px;
 }
 .subscriptions-list {
+    height: 50px;
     display: flex;
     justify-content: space-between;
     padding: 2px;
 }
-.unfollow-btn {
-    margin-right: 15px;
-    margin-left: 5px;
-    padding: 2px 30px;
+.subscriptions-name {
+    width: 100%;
+    border: solid 2px black;
+    position: relative;
+    padding: 0 5px;
 }
-
+.subscriptions-name span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.unfollow-btn {
+    width: 100%;
+    min-width: 230px;
+    height: 100%;
+    background-color: #dc143c;
+    padding: 2px 30px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.unfollow-btn:hover {
+    background-color: hsl(348, 63%, 46%);
+}
 .subscribers {
     width: 95%;
     margin: 5px auto 50px;
@@ -618,4 +642,13 @@ nav a {
     list-style: none;
     margin: 2px auto;
     padding: 6px 5px;
+}
+.even-subscribers {
+    background-color: #cff0f9;
+}
+@media (max-width: 900px) {
+    .unfollow-btn {
+        min-width: 190px;
+        font-size: 19px;
+    }
 }
