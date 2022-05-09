@@ -113,6 +113,17 @@
     <!-- Content -->
     <div class="content">
 
+        <!-- Success / error Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="msg-container">
+                    <div class="msg-{{ message.tags }}">
+                        <p>{{ message|safe }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
         {% block content %}
 
         {% endblock content %}

@@ -7,16 +7,7 @@
 
 {% block content %}
 <!-- Subscriptions page -->
-    {% if messages %}
-      {% for message in messages %}
-          <div class="subs-msg-{{ message.tags }}">
-            <p>{{ message|safe }}</p>
-          </div>
-        {% endfor %}
-    {% endif %}
-
     <div class="subs-content general-container">
-
 
     <div class="follow-users">
         <h2>Suivre d'autres utilisateurs</h2>

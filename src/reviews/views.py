@@ -80,7 +80,7 @@ def edit_ticket(request, ticket_id: int):
             ticket_form = forms.TicketForm(request.POST, request.FILES, instance=ticket)
             if ticket_form.is_valid():
                 ticket.save()
-                success_message = f"La billet < {ticket.title} > a bien été mis à jour."
+                success_message = f"Le billet <strong>{ticket.title}</strong>> a bien été mis à jour."
                 messages.add_message(request, messages.SUCCESS, message=success_message)
                 return redirect("posts")
 
@@ -98,7 +98,7 @@ def delete_ticket(request, ticket_id: int):
     if request.method == "POST":
         ticket_to_delete = get_object_or_404(models.Ticket, id=ticket_id)
         ticket_to_delete.delete()
-        success_message = f"Le billet {ticket_to_delete.title} a bien été supprimé."
+        success_message = f"Le billet <strong>{ticket_to_delete.title}</strong> a bien été supprimé."
         messages.add_message(request, messages.SUCCESS, message=success_message)
         return redirect('posts')
 
@@ -148,7 +148,7 @@ def edit_review(request, review_id: int):
         review_form = forms.ReviewForm(request.POST, instance=review)
         if review_form.is_valid():
             review.save()
-            success_message = f"La critique de < {ticket.title} > a bien été mis à jour."
+            success_message = f"La critique de <strong>{ticket.title}</strong> a bien été mis à jour."
             messages.add_message(request, messages.SUCCESS, message=success_message)
             return redirect("posts")
 
@@ -164,9 +164,9 @@ def delete_review(request, review_id):
     review_to_delete = get_object_or_404(models.Review, id=review_id)
     ticket = get_object_or_404(models.Ticket, pk=review_to_delete.ticket.pk)
     review_to_delete.delete()
-    success_message = f"La critique de < {review_to_delete.ticket.title} > a bien été supprimé."
     ticket.already_replied = False
     ticket.save(update_fields=['already_replied'])
+    success_message = f"La critique de <strong>{review_to_delete.ticket.title}</strong> a bien été supprimé."
     messages.add_message(request, messages.SUCCESS, message=success_message)
     return redirect('posts')
 
@@ -215,7 +215,8 @@ def subscribers_subscriptions(request):
         try:
             new_followed_user = User.objects.get(username=request.POST['followed_user'])
         except ObjectDoesNotExist:
-            error_message = f"--- {request.POST['followed_user'].upper()} --- n'existe pas dans la base de donnée."
+            error_message = f"<strong>{request.POST['followed_user'].upper()}" \
+                            f"</strong> n'existe pas dans la base de donnée."
             messages.add_message(request, messages.ERROR, message=error_message)
             return render(request,
                           "reviews/subs.html",
@@ -234,13 +235,13 @@ def subscribers_subscriptions(request):
             try:
                 new_subscription.save()
             except IntegrityError:
-                error_message = f"Vous suivez déjà {new_followed_user}."
+                error_message = f"Vous suivez déjà <strong>{new_followed_user}</strong>."
                 messages.add_message(request, messages.ERROR, message=error_message)
                 return render(request,
                               "reviews/subs.html",
                               context=context)
             else:
-                success_message = f"Vous suivez désormais {new_subscription.followed_user}"
+                success_message = f"Vous suivez désormais <strong>{new_subscription.followed_user}</strong>."
                 messages.add_message(request, messages.SUCCESS, message=success_message)
                 return render(request,
                               "reviews/subs.html",
@@ -257,6 +258,6 @@ def unsubscribe(request, subscribers_id: int):
         user_to_unsubscribe = get_object_or_404(models.UserFollows, id=subscribers_id)
         user_to_unsubscribe.delete()
 
-        success_message = f"Vous ne suivez plus {user_to_unsubscribe.followed_user}."
+        success_message = f"Vous ne suivez plus <strong>{user_to_unsubscribe.followed_user}</strong>."
         messages.add_message(request, messages.SUCCESS, message=success_message)
         return redirect('subscribers')

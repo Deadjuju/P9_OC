@@ -8,13 +8,6 @@
 {% block content %}
 <!-- Posts content -->
     <div class="posts-content">
-    {% if messages %}
-      {% for message in messages %}
-          <div class="subs-msg-{{ message.tags }}">
-            <p>{{ message|safe }}</p>
-          </div>
-        {% endfor %}
-    {% endif %}
 
         <div class="posts-header general-container">
             <h2>Vos posts</h2>
