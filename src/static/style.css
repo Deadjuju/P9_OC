@@ -159,7 +159,6 @@ input:focus, textarea:focus {
 nav a {
     text-decoration: none;
     font-size: 20px;
-    /* text-transform: uppercase; */
     margin:0 10px;
 }
 .text-homepage {
@@ -735,4 +734,106 @@ nav a {
         min-width: 190px;
         font-size: 19px;
     }
+}
+
+
+/* ------------- Footer ------------- */
+
+footer {
+    margin-top: 20px;
+}
+.footer-container {
+    background: #6ec1eb;
+    background: -moz-linear-gradient(112deg, #6ec1eb 0%, #3dc7d7 53%, #2f368d 100%);
+    background: -webkit-linear-gradient(112deg, rgba(110,193,235,1) 0%, rgba(61,199,215,1) 53%, rgba(47,54,141,1) 100%);
+    background: linear-gradient(112deg, rgba(110,193,235,1) 0%, #3dc7d7 53%, rgba(47,54,141,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6ec1eb",endColorstr="#2f368d",GradientType=1); 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+footer hr {
+	display: block;
+	clear: both;
+    background-color: #333;
+    width: 95%;
+	height: 5px;
+	margin: 40px auto;
+	padding: 0;
+	border: 0;
+	font-family: arial;
+	text-align: center;
+	font-size: 21px;
+	line-height: 1;
+}
+footer hr:after {
+	content: " \276E-\00B6-\00A7-\204B-\276F";
+	height: 0;			
+    background-color: hsl(224, 29%, 22%);
+	letter-spacing: 25px;
+	color: #aaa;
+    position: relative;
+    margin: 2px auto;
+    padding: 5px;
+    top: -8px;
+}
+
+.footer-section-follow {
+    max-width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    padding: 10px;
+}
+.footer-section-follow p {
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.medias-footer {
+    display: flex;
+}
+.medias-footer a {
+    flex-shrink: 0;
+    display: block;
+    margin-right: 10px;
+    width: 55px;
+    height: 55px;
+    background: #791613;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+}
+.medias-footer a:hover {
+    background: hsl(2, 73%, 42%);
+    color: rgb(204, 204, 204);
+}
+.medias-footer img {
+    width: 29px;
+}
+.descriptions-footer {
+    margin: 20px auto;
+}
+.descriptions-footer li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.descriptions-footer a {
+    font-size: 25px;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+}
+.descriptions-footer a:hover {
+    border-bottom: solid 2px;
+    color: #f2f2f2;
+}
+.copyright-footer {
+    margin: 4px auto;
 }
