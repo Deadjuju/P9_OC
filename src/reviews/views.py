@@ -5,29 +5,21 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
-from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from authentication.models import User
 from . import forms, models
+from .utils import get_users_viewable_tickets, get_users_viewable_reviews
 
 
 @login_required
 def home(request):
-    # tickets = models.Ticket.objects.filter(user__in__followed_by=request.user)
+    """ feed display on main page """
 
-    followed_users = models.UserFollows.objects.filter(user=request.user)
-    subscriptions = [user.followed_user for user in followed_users]
-
-    # display feed according to subscriptions
-    users_filter = Q(user__in=subscriptions) | Q(user=request.user)
-    tickets = models.Ticket.objects.filter(users_filter)
-    reviews = models.Review.objects.filter(users_filter)
-
-    # tickets = models.Ticket.objects.all()
-    # reviews = models.Review.objects.all()
+    tickets = get_users_viewable_tickets(user=request.user)
+    reviews = get_users_viewable_reviews(user=request.user)
 
     #  chain the 2 parameters
     tickets_and_reviews = sorted(
@@ -36,9 +28,12 @@ def home(request):
         reverse=True
     )
 
+    context = {"tickets_and_reviews": tickets_and_reviews,
+               "home_page": True}
+
     return render(request,
                   'reviews/home.html',
-                  context={"tickets_and_reviews": tickets_and_reviews, "home_page": True})
+                  context=context)
 
 
 @login_required

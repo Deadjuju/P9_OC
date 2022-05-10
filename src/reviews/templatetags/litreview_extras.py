@@ -1,3 +1,4 @@
+import locale
 from django import template
 from django.utils import timezone
 
@@ -8,6 +9,7 @@ DAY = 24 * HOUR
 DAYS = 2 * DAY
 
 
+locale.setlocale(locale.LC_ALL, 'fr_FR')
 register = template.Library()
 
 
