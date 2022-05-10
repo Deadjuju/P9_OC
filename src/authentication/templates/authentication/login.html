@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    <title>LITReview | Connexion</title>
+{% endblock title %}
+
 {% block content %}
     <!-- Login -->
-    <div class="login">
+    <div class="msg-container">
+        {% if form.errors %}
+            <div class="msg-error">
+                <p>Votre nom d'utilisateur et votre mot de passe ne correspondent pas.<br>
+                    Veuillez réessayer.</p>
+            </div>
+        {% endif %}
+    </div>
 
-        <p>{{ message }}</p>
+    <div class="login">
 
         <div class="login-content login-registration general-container">
             <p class="login-text">

@@ -63,9 +63,11 @@
 
     </div>
 
-    <div class="lateral-nav">
-        {% include 'partials/navigation.html' %}
-    </div>
+    {% if not request.resolver_match.url_name == "login" %}
+        <div class="lateral-nav">
+            {% include 'partials/navigation.html' %}
+        </div>
+    {% endif %}
 
 <!-- Footer -->
     {% include 'partials/footer.html' %}
