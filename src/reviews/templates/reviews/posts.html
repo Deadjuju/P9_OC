@@ -12,7 +12,7 @@
         <div class="posts-header general-container">
             <h2>Vos posts</h2>
             <div class="posts">
-                {% for instance in tickets_and_reviews %}
+                {% for instance in page_obj %}
                     <div class="instance">
                         {% if instance|model_type == "Ticket" %}
                             {% include 'reviews/partials/ticket-snippet.html' with ticket=instance %}
@@ -20,11 +20,16 @@
                             {% include 'reviews/partials/review-snippet.html' with review=instance %}
                         {% endif %}
                     </div>
+
                 {% empty %}
                     <p>
                         Vous n'avez pas encore de posts.
                     </p>
                 {% endfor %}
+
+                    <!-- Paginates -->
+                    {% include 'reviews/partials/paging-snippet.html' %}
+
             </div>
         </div>
     </div>

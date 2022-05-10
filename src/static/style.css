@@ -524,7 +524,6 @@ nav a {
 /* ------------- Posts ------------- */
 
 .posts-edit-delete {
-    /* background-color: #da0463; */
     display: flex;
     justify-content: end;
     padding: 10px;
@@ -537,6 +536,9 @@ nav a {
     text-align: center;
     position: relative;
 }
+.posts-edit-btn a {
+    color: #F1F1F1;
+}
 .posts-delete-btn {
     background-color: #dc143c;
 }
@@ -545,7 +547,6 @@ nav a {
 }
 .posts-link-edit {
     display: inline-block;
-    /* height: 100%; */
     margin: auto;
     text-decoration: none;
     position: absolute;
@@ -839,6 +840,7 @@ footer hr:after {
     justify-content: center;
 }
 .descriptions-footer a {
+    color: #F8F8F8;
     font-size: 25px;
     text-decoration: none;
     transition: all 0.1s ease-in-out;
@@ -846,6 +848,9 @@ footer hr:after {
 .descriptions-footer a:hover {
     border-bottom: solid 2px;
     color: #f2f2f2;
+}
+.descriptions-footer a:active {
+    color: #1cc81c;
 }
 .copyright-footer {
     margin: 4px auto;

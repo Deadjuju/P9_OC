@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.paginator import Paginator
 from django.db import IntegrityError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -12,7 +11,7 @@ from django.views.generic import CreateView
 
 from authentication.models import User
 from . import forms, models
-from .utils import get_users_viewable_tickets, get_users_viewable_reviews
+from .utils import get_users_viewable_tickets, get_users_viewable_reviews, paginate
 
 
 @login_required
@@ -21,6 +20,8 @@ def home(request):
 
     tickets = get_users_viewable_tickets(user=request.user)
     reviews = get_users_viewable_reviews(user=request.user)
+    print(request.user.number_of_subscribers)
+    print("-"*75)
 
     #  chain the 2 parameters
     tickets_and_reviews = sorted(
@@ -29,9 +30,9 @@ def home(request):
         reverse=True
     )
 
-    paginator = Paginator(tickets_and_reviews, 5)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+    # paginates
+
+    page_obj = paginate(request, tickets_and_reviews)
 
     context = {"page_obj": page_obj,
                "home_page": True}
@@ -43,6 +44,7 @@ def home(request):
 
 @login_required
 def user_posts(request):
+    """ user posts display on posts page """
 
     tickets = models.Ticket.objects.filter(user=request.user)
     reviews = models.Review.objects.filter(user=request.user)
@@ -54,7 +56,10 @@ def user_posts(request):
         reverse=True
     )
 
-    context = {"tickets_and_reviews": tickets_and_reviews, }
+    # paginate
+    page_obj = paginate(request, tickets_and_reviews)
+
+    context = {"page_obj": page_obj, }
     return render(request,
                   'reviews/posts.html',
                   context=context)

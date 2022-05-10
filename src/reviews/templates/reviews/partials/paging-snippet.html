@@ -1,0 +1,17 @@
+<div class="paging_content">
+    {% if page_obj.has_previous %}
+        <span class="previous-next-pages">
+            <a href="?page=1"><< Première page</a>
+             | <a href="?page={{ page_obj.previous_page_number }}">< page précédente</a> |
+        </span>
+    {% endif %}
+    <span>
+        Page {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    </span>
+    {% if page_obj.has_next %}
+        <span class="previous-next-pages">
+             | <a href="?page={{ page_obj.next_page_number }}">Page suivante ></a> |
+            <a href="?page={{ page_obj.paginator.num_pages }}">dernière page >></a>
+        </span>
+    {% endif %}
+</div>
