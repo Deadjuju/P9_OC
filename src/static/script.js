@@ -18,3 +18,15 @@ progressBarClick.addEventListener('click', (e) => {
     })
 
 })
+
+const lateralNav = document.querySelector('.lateral-nav');
+window.addEventListener('scroll', () => {
+
+    const {scrollTop} = document.documentElement;
+
+    if (scrollTop > 270) {
+        lateralNav.style.display = "block";
+    } else {
+        lateralNav.style.display = "none";
+    }
+})

@@ -51,7 +51,7 @@ input, textarea {
     border: none;
     box-shadow: inset black 2px 2px 3px;
     outline: 0px solid #e2e7e2;
-    transition: outline 0.3s ease-in-out, backgrounf 0.2s ease-in
+    transition: outline 0.3s ease-in-out, background 0.2s ease-in
 }
 input:hover {
     background: linear-gradient(43deg, #f2f2f2 0%, rgb(228,240,243,1) 100%); 
@@ -99,7 +99,7 @@ input:focus, textarea:focus {
 
 /* ------------- Scrollbar ------------- */
 
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
     width: 0;
     background-color: transparent;
 }
@@ -241,13 +241,95 @@ nav a {
 
 .lateral-nav {
     position: fixed;
-    top: 50%;
+    background: #6ec1eb;
+    background: -moz-linear-gradient(112deg, #6ec1eb 0%, #3dc7d7 53%, #2f368d 100%);
+    background: -webkit-linear-gradient(12deg, rgba(110,193,235,1) 0%, #3dc7d7 53%, rgba(47,54,141,1) 100%);
+    background: linear-gradient(12deg, rgba(110,193,235,1) 0%, #3dc7d7 53%, rgba(47,54,141,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6ec1eb",endColorstr="#2f368d",GradientType=1); 
+    top: 50px;
     right: 0;
-    width: 220px;
+    width: 200px;
     /* height: 350px; */
     border: solid 1px black;
-    display: block;
+    display: none;
+    animation: wobble 0.6s ease 0s normal forwards;
 }
+@media (max-width: 1000px) {
+    .lateral-nav {
+        width: 100px;
+    }
+    .lateral-nav a {
+        font-size: 14px;
+    }
+}
+.bounceIn {
+    -webkit-animation-name: wobble;
+    animation-name: wobble;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    }
+    @-webkit-keyframes wobble {
+    0% {
+    -webkit-transform: none;
+    transform: none;
+    }
+    15% {
+    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+    }
+    30% {
+    -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+    }
+    45% {
+    -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+    }
+    60% {
+    -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+    }
+    75% {
+    -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    }
+    100% {
+    -webkit-transform: none;
+    transform: none;
+    }
+    }
+    @keyframes wobble {
+    0% {
+    -webkit-transform: none;
+    transform: none;
+    }
+    15% {
+    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+    }
+    30% {
+    -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+    }
+    45% {
+    -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+    }
+    60% {
+    -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+    }
+    75% {
+    -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    }
+    100% {
+    -webkit-transform: none;
+    transform: none;
+    }
+    } 
 
 
 /* ------------- Success / Error msg ------------- */

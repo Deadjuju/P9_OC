@@ -12,68 +12,6 @@
             {% endif %}
         </div>
 
-        <div class="nav-right">
-            <ul>
-                {% if user.is_authenticated %}
-                    <li class="nav-right-link">
-                        <a href="{% url 'home' %}">
-                            {% if request.resolver_match.url_name == "home" %}
-                                 >
-                            {% endif %}
-                            Flux
-                        </a>
-                        {% if request.resolver_match.url_name == "create_ticket" %}
-                            <div class="nav-right-sub-menu">
-                                <p>>> Créer un ticket</p>
-                            </div>
-                        {% elif request.resolver_match.url_name == "create_review" %}
-                            <div class="nav-right-sub-menu">
-                                <p>>> Créer une critique</p>
-                            </div>
-                        {% elif request.resolver_match.url_name == "reply" %}
-                            <div class="nav-right-sub-menu">
-                                <p>>> Répondre à un ticket</p>
-                            </div>
-
-                        {% endif %}
-                    </li>
-                    <li class="nav-right-link">
-                        <a href="{% url 'posts' %}">
-                            {% if request.resolver_match.url_name == "posts" %}
-                                 >
-                            {% endif %}
-                            Posts
-                        </a>
-                        {% if request.resolver_match.url_name == "edit_ticket" %}
-                            <div class="nav-right-sub-menu">
-                                <p>>> Modifier le ticket</p>
-                            </div>
-                        {% elif request.resolver_match.url_name == "edit_review" %}
-                            <div class="nav-right-sub-menu">
-                                <p>>> Modifier la critique</p>
-                            </div>
-                        {% endif %}
-                    </li>
-                    <li class="nav-right-link">
-                        <a href="{% url 'subscribers' %}">
-                            {% if request.resolver_match.url_name == "subscribers" %}
-                                 >
-                            {% endif %}
-                            Abonnements
-                        </a>
-                    </li>
-                    <li class="nav-right-link"><a href="{% url 'logout' %}">
-                        Se déconnecter</a>
-                    </li>
-                {% endif %}
-                {% if request.resolver_match.url_name == "signup" %}
-                    <li class="nav-right-link">
-                        <a href="{% url 'login' %}">
-                            Accueil
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
+        {% include 'partials/navigation.html' %}
     </nav>
 </header>
