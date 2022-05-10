@@ -97,6 +97,32 @@ input:focus, textarea:focus {
 }
 
 
+/* ------------- Scrollbar ------------- */
+
+::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+}
+.scrollbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 0;
+    opacity: 0;
+    background: linear-gradient(to top, #6ec1eb, #2f368d, #add3ff);
+}
+.clickScrollbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 100%;
+    background: rgba(170, 170, 170, 0.356);
+
+}
+
+
 /* ------------- Navigation ------------- */
 
 .navbar {
@@ -109,7 +135,7 @@ input:focus, textarea:focus {
     border-bottom: 3px black solid;
     background: #6ec1eb;
     background: -moz-linear-gradient(112deg, #6ec1eb 0%, #3dc7d7 53%, #2f368d 100%);
-    background: -webkit-linear-gradient(112deg, rgba(110,193,235,1) 0%, rgba(61,199,215,1) 53%, rgba(47,54,141,1) 100%);
+    background: -webkit-linear-gradient(112deg, rgba(110,193,235,1) 0%, #3dc7d7 53%, rgba(47,54,141,1) 100%);
     background: linear-gradient(112deg, rgba(110,193,235,1) 0%, #3dc7d7 53%, rgba(47,54,141,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6ec1eb",endColorstr="#2f368d",GradientType=1); 
 }
@@ -208,6 +234,19 @@ nav a {
 }
 .nav-right-sub-menu:hover {
     color: #F8F8F8;
+}
+
+
+/* ------------- Lateral Nav ------------- */
+
+.lateral-nav {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    width: 220px;
+    /* height: 350px; */
+    border: solid 1px black;
+    display: block;
 }
 
 

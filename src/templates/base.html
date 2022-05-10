@@ -38,6 +38,9 @@
 </head>
 <body>
 
+    <div class="scrollbar"></div>
+    <div class="clickScrollbar"></div>
+
     <!-- Nav bar -->
         {% include 'partials/header.html' %}
 
@@ -60,8 +63,11 @@
 
     </div>
 
+
 <!-- Footer -->
     {% include 'partials/footer.html' %}
+
+    <script src="{% static 'script.js' %}"></script>
 
 </body>
 </html>

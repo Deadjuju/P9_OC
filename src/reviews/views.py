@@ -20,8 +20,6 @@ def home(request):
 
     tickets = get_users_viewable_tickets(user=request.user)
     reviews = get_users_viewable_reviews(user=request.user)
-    print(request.user.number_of_subscribers)
-    print("-"*75)
 
     #  chain the 2 parameters
     tickets_and_reviews = sorted(
