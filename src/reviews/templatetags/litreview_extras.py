@@ -24,7 +24,7 @@ def get_posted_at_display(posted_at):
     if seconds_ago <= 1:
         return f"Publié à l'instant."
     elif seconds_ago <= MINUTE:
-        return f"Publié il y {int(seconds_ago)} secondes."
+        return f"Publié il y a {int(seconds_ago)} secondes."
     elif seconds_ago <= HOUR:
         return f"Publié il y a {int(seconds_ago // MINUTE)} minutes."
     elif seconds_ago <= DAY:
