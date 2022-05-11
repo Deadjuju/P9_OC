@@ -23,9 +23,9 @@
         </div>
 
         <div class="flux">
-            {% if tickets_and_reviews|length_is:"0" %}
+            {% if page_obj|length_is:"0" %}
                 <p>Vous n'avez pas encore de flux.<br>
-                    Suivez vite de nouvelles personnes pour découvrir votre flux! </p>
+                    Suivez vite de <a href="{% url 'subscribers' %}">nouvelles personnes</a> pour découvrir votre flux! </p>
             {% else %}
                 {% for instance in page_obj %}
                     <div class="instance">
