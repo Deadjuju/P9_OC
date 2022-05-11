@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if subtitle %}
+        {{ subtitle }} |
+    {% endif %}
+    {{ title }} |
+    {{ site_title|default:_('Django site admin') }}
+{% endblock %}
+  
+{% block branding %} 
+    <h1 id="site-name" style="font-family: cursive;" >
+        <img src="{% static 'img/logo-litreview.png' %}" alt="Logo LitReview" style="height:45px;">
+        <a href="{% url 'admin:index' %}">LITReview Admin</a>
+    </h1>
+{% endblock branding %}
+  
+{% block nav-global %}
+{% endblock nav-global %}
