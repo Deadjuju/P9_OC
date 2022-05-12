@@ -10,7 +10,7 @@
                 {{ review.headline }} - <span class="rating"> {% rating_star_display review.rating %} </span>
             </p>
             <p>
-                {{ review.body }}
+                {{ review.body|linebreaks }}
             </p>
         </div>
         <div class="review-right">
