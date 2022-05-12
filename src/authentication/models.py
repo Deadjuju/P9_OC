@@ -10,5 +10,8 @@ class User(AbstractUser):
     def number_of_subscribers(self):
         return self.followed_by.all().count()
 
+    class Meta:
+        ordering = ["username"]
+
     def __str__(self):
         return f"{self.username}"
