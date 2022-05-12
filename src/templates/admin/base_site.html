@@ -10,11 +10,32 @@
 {% endblock %}
   
 {% block branding %} 
-    <h1 id="site-name" style="font-family: cursive;" >
-        <img src="{% static 'img/logo-litreview.png' %}" alt="Logo LitReview" style="height:45px;">
+    <h1 id="site-name">
+        <img src="{% static 'img/logo-litreview.png' %}" alt="Logo LitReview">
         <a href="{% url 'admin:index' %}">LITReview Admin</a>
     </h1>
 {% endblock branding %}
+
+{% block extrastyle %}
+    <style>
+        #header {
+                background: #6ec1eb;
+                background: -moz-linear-gradient(112deg, #6ec1eb 0%, #3dc7d7 53%, #2f368d 100%);
+                background: -webkit-linear-gradient(112deg, rgba(110,193,235,1) 0%, #3dc7d7 53%, rgba(47,54,141,1) 100%);
+                background: linear-gradient(112deg, rgba(110,193,235,1) 0%, #3dc7d7 53%, rgba(47,54,141,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6ec1eb",endColorstr="#2f368d",GradientType=1);
+        }
+        h1 {
+            font-family: cursive;
+        }
+        h1 img {
+            height:45px;
+            filter: drop-shadow(1px 5px #DA0463);
+        }
+
+    </style>
+{% endblock %}
+
   
 {% block nav-global %}
 {% endblock nav-global %}
