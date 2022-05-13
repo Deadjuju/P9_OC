@@ -34,6 +34,14 @@ def get_posted_at_display(posted_at):
     return f"Publié le {posted_at.strftime('%d %b %y à %Hh%M')}"
 
 
+@register.filter
+def pluralizor(number):
+    if int(number) > 1:
+        return "s"
+    else:
+        return ""
+
+
 @register.simple_tag(takes_context=True)
 def get_poster_display(context, user):
     if user == context['user']:
