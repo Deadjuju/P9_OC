@@ -29,7 +29,6 @@ def home(request):
     )
 
     # paginates
-
     page_obj = paginate(request, tickets_and_reviews)
 
     context = {"page_obj": page_obj,
@@ -64,6 +63,8 @@ def user_posts(request):
 
 
 class CreateTicketView(LoginRequiredMixin, CreateView):
+    """ View to create a ticket """
+
     model = models.Ticket
     template_name = 'reviews/create-ticket.html'
     form_class = forms.TicketForm
@@ -76,6 +77,8 @@ class CreateTicketView(LoginRequiredMixin, CreateView):
 
 @login_required
 def edit_ticket(request, ticket_id: int):
+    """ View to edit a ticket """
+
     ticket = get_object_or_404(models.Ticket, pk=ticket_id)
     if request.user == ticket.user:
         ticket_form = forms.TicketForm(instance=ticket)
@@ -98,6 +101,8 @@ def edit_ticket(request, ticket_id: int):
 
 @login_required
 def delete_ticket(request, ticket_id: int):
+    """ View to delete a ticket """
+
     if request.method == "POST":
         ticket_to_delete = get_object_or_404(models.Ticket, id=ticket_id)
         ticket_to_delete.delete()
@@ -106,20 +111,10 @@ def delete_ticket(request, ticket_id: int):
         return redirect('posts')
 
 
-# class CreateReviewView(LoginRequiredMixin, CreateView):
-#     model = models.Review
-#     template_name = 'review/create-review.html'
-#     form_class = [models.Ticket, models.Review]
-#     success_url = reverse_lazy('home')
-#
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super().form_valid(form)
-#
-
-
 @login_required
 def create_review(request):
+    """ View to create a review """
+
     ticket_form = forms.TicketForm()
     review_form = forms.ReviewForm()
 
@@ -145,6 +140,8 @@ def create_review(request):
 
 @login_required
 def edit_review(request, review_id: int):
+    """ View to edit a review """
+
     review = get_object_or_404(models.Review, pk=review_id)
     ticket = review.ticket
     review_form = forms.ReviewForm(instance=review)
@@ -165,6 +162,8 @@ def edit_review(request, review_id: int):
 
 @login_required
 def delete_review(request, review_id):
+    """ View to delete a review """
+
     review_to_delete = get_object_or_404(models.Review, id=review_id)
     ticket = get_object_or_404(models.Ticket, pk=review_to_delete.ticket.pk)
     review_to_delete.delete()
@@ -177,6 +176,8 @@ def delete_review(request, review_id):
 
 @login_required
 def reply_to_a_ticket(request, ticket_id: int):
+    """ View to create a review in response to a ticket """
+
     ticket = get_object_or_404(models.Ticket, pk=ticket_id)
     if not ticket.already_replied:
         review_form = forms.ReviewForm()
@@ -202,6 +203,8 @@ def reply_to_a_ticket(request, ticket_id: int):
 
 @login_required
 def subscribers_subscriptions(request):
+    """ User subscription manager """
+
     form = forms.SubscriberForm()
     context = {'form': form}
 
@@ -226,7 +229,7 @@ def subscribers_subscriptions(request):
                           "reviews/subs.html",
                           context=context)
         else:
-            # case where one is looking for oneself
+            # case where the user is looking for himself
             if new_followed_user.username == request.user.username:
                 error_message = " --- Vous ne pouvez pas vous suivre vous même! --- "
                 messages.add_message(request, messages.ERROR, message=error_message)
@@ -258,6 +261,8 @@ def subscribers_subscriptions(request):
 
 @login_required
 def unsubscribe(request, subscribers_id: int):
+    """ View to delete a subscription """
+
     if request.method == "POST":
         user_to_unsubscribe = get_object_or_404(models.UserFollows, id=subscribers_id)
         user_to_unsubscribe.delete()
