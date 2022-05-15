@@ -8,7 +8,7 @@
         <div class="container-namelinks">
             <a href="{% url 'home' %}" class="text-homepage">LITReview</a>
             {% if user.is_authenticated %}
-                <h3>| <a href="{% url 'password_change' %}">{{ user.username }}</a> |</h3>
+                <h3>| <a href="{% url 'password_change' %}" class="two-lines">{{ user.username }}</a> |</h3>
             {% endif %}
         </div>
 
