@@ -9,7 +9,7 @@ urlpatterns = [
         redirect_authenticated_user=True,
     ), name="login"),
     path('logout/', LogoutView.as_view(), name="logout"),
-    path('signup/', authentication.views.signup, name="signup"),
+    path('signup/', authentication.views.SignupView.as_view(), name="signup"),
     path(
         'change-password/',
         authentication.views.PasswordChangeView.as_view(),

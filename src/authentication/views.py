@@ -2,30 +2,34 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import FormView
+from django.views.generic import FormView, CreateView
 
-from authentication import forms
+from authentication import forms, models
 
 
-def signup(request):
-    form = forms.SignupForm()
-    if request.method == "POST":
-        form = forms.SignupForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            success_message = f"Bonjour <strong>{user.username}</strong>,<br>" \
-                              f"Bienvenue chez LITReview!"
-            messages.add_message(request, messages.SUCCESS, message=success_message)
-            return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request,
-                  'authentication/signup.html',
-                  context={'form': form})
+class SignupView(CreateView):
+    """ Manage new user registration """
+
+    model = models.User
+    template_name = 'authentication/signup.html'
+    form_class = forms.SignupForm
+    success_url = reverse_lazy(settings.LOGIN_REDIRECT_URL)
+
+    def form_valid(self, form):
+        super(SignupView, self).form_valid(form)
+        user = form.save()
+        login(self.request, user)
+        success_message = f"Bonjour <strong>{self.request.user.username}</strong>,<br>" \
+                          f"Bienvenue chez LITReview!"
+        messages.add_message(self.request, messages.SUCCESS, message=success_message)
+        return redirect(settings.LOGIN_REDIRECT_URL)
 
 
 class PasswordChangeView(FormView):
+    """ Change user password """
+
     template_name = 'authentication/password_change_form.html'
     form_class = PasswordChangeForm
     success_url = reverse_lazy('posts')
