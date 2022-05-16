@@ -1,0 +1,104 @@
+Liste des utilisateurs (fictifs) pré-enregistrés dans la Base de Données:
+
+=======================================================================
+
+MOT DE PASSE: S3cret!123
+(pour tout le monde - modifiable)
+
+________________________________________________________________________
+________________________________________________________________________
+
+UTILISATEURS:
+  PSEUDO (-> pour la connexion)
+  mail
+  prénom
+  nom de famille
+	-------------------------------------------
+• 
+  rastier
+  philippe.rastier@gmail.com
+  Philippe
+  Rastier
+
+
+•
+  Steve-the-King
+  stephenking@yahoo.com
+  Stephen
+  King
+
+•
+  eli87
+  elisabethbogros@hotmail.com
+  Elisabeth
+  Bogros
+
+• 
+  deadjuju
+  deadjuju@gmail.com
+  Julien
+  Garcia
+
+• 
+  Serj
+  serj@hotmail.fr
+  Serj
+  Tankian
+
+• 
+  Batman
+  bruce-wayne@laposte.net
+  Bruce
+  Wayne
+
+•
+  Mario
+  mario_bros@nitendo.jp
+  Mario
+  Bros
+
+•
+  John-Williams
+  j.williams@disney.com
+  John
+  Williams
+
+•
+  Vador
+  dark_vador@its-a-trap.com
+  Dark
+  Vador
+
+•
+  Zelda
+  princess-zelda@nitendo.com
+  Princess
+  Zelda
+
+•
+  Balzac
+  h.balzac@hotmail.fr
+  Honoré
+  de Balzac
+
+•
+  Mickey
+  mickey_mouse@disney.com
+  Mickey
+  Mouse
+
+•
+  Yoda
+  yoda@jedi.com
+  Maitre
+  Yoda
+
+________________________________________________________________________
+________________________________________________________________________
+
+SUPER-UTILISATEUR:
+•
+  admin
+
+  
+  
