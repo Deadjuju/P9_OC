@@ -18,6 +18,7 @@
     * [Mot de passe par défaut](#section4_1)
     * [Super-Utilisateur](#section4_2)
     * [Utilisateurs](#section4_3)
+    * [Coordonnés des utilisateurs pré-enregistrés](#section4_4)
 
 
 ***
@@ -122,7 +123,8 @@ Enfin, pour arrêter le serveur utilisez les touches *ctrl* + *c* dans le termin
 Ce repository vient avec une base de données **sqlite** pré-remplie de quelques comptes utilisateurs afin de pouvoir faire fonctionner très rapidement l'application.
 
 ### Mot de passe par défaut <a class="anchor" id="section4_1"></a>  
-Le mot de passe de tous les utilisateurs pré-enregistrés par défaut est **S3cret!123**
+Le mot de passe de tous les utilisateurs pré-enregistrés est par défaut **S3cret!123**.  
+Il est modifiable en se connectant à la session de l'utilisateur.
 
 ### Super-Utilisateur <a class="anchor" id="section4_2"></a>
 
@@ -141,6 +143,11 @@ http://127.0.0.1:8000/admin/
 La base de donnée possède par défaut quelques utilisateurs ***fictifs*** ayant déjà publié certains Ticket & Review.  
 Les comptes, tickets et reviews peuvent être supprimés/modifiés depuis l'administration du site.
 
-Pour créer un nouvel utilisateur vous pouvez suivre tout simplement le processus (traditionnel) d'inscription sur la page http://127.0.0.1:8000/signup/ .  
-  
-## Bon amusement avec **LITReview**!  
+Pour créer un nouvel utilisateur vous pouvez suivre tout simplement le processus (traditionnel) d'inscription sur la page http://127.0.0.1:8000/signup/ . 
+
+### Coordonnés des utilisateurs pré-enregistrés <a class="anchor" id="section4_4"></a>  
+Les coordonnés de chaque utilisateur sont listées dans le fichier [users.txt](https://github.com/Deadjuju/P9_OC/blob/main/users.txt) se trouvant à la racine du projet.  
+La connexion ne nécessite qu'uniquement le "***Pseudo***" de l'utilisateur et son ***Mot de Passe***.  
+Nous vous conseillons de commencer votre expérience avec l'utilisateur ***rastier*** qui possède le *flux* le plus conséquent et le plus de relations avec les autres utilisateurs.
+    
+## **Bon amusement avec ***LITReview***!**  
