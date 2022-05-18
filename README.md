@@ -153,8 +153,6 @@ Les coordonnés de chaque utilisateur sont listées dans le fichier [users.txt](
 La connexion ne nécessite qu'uniquement le "***Pseudo***" de l'utilisateur et son ***Mot de Passe***.  
 Nous vous conseillons de commencer votre expérience avec l'utilisateur ***rastier*** qui possède le *flux* le plus conséquent et le plus de relations avec les autres utilisateurs.
     
-## **Bon amusement avec ***LITReview***!**  
-
 ***  
 
 ## V. Rapport Flake8 <a class="anchor" id="chapter5"></a>  
@@ -170,3 +168,6 @@ Il se trouve à la racine du dossier dans le dossier : **flake8_rapport**
 Un nouveau rapport peut-être généré en exécutant la commande suivante dans le terminal :
 
     flake8 --format=html --htmldir=flake8_rapport
+
+***  
+## **Bon amusement avec ***LITReview***!**  
