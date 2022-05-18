@@ -19,6 +19,7 @@
     * [Super-Utilisateur](#section4_2)
     * [Utilisateurs](#section4_3)
     * [Coordonnés des utilisateurs pré-enregistrés](#section4_4)
+* [V. Rapport Flake8](#chapter5)
 
 
 ***
@@ -75,8 +76,8 @@ Dans la racine du dossier:
   2. Activer ensuite l'environnement virtuel:
     
     > Sur Windows  
-    - terminal de type bash: source env/Scripts/activate
-    - terminal de type shell: env\Scripts\activate
+    - terminal de type bash : source env/Scripts/activate
+    - terminal de type shell : env\Scripts\activate
       
     > Sur Mac ou Linux
     - source env/bin/activate
@@ -90,7 +91,7 @@ L'application web est maintenant prête à être utilisée.
 
 ***  
 
-## II. Lancer le serveur en local <a class="anchor" id="chapter3"></a>
+## III. Lancer le serveur en local <a class="anchor" id="chapter3"></a>
 
 Depuis le dossier racine du projet rendez vous avec le terminal dans le dossier ***src/***
 
@@ -116,7 +117,9 @@ ex:
 python manage.py runserver 8080  
 http://127.0.0.1:8080  
   
-Enfin, pour arrêter le serveur utilisez les touches *ctrl* + *c* dans le terminal.  
+Enfin, pour arrêter le serveur utilisez les touches *ctrl* + *c* dans le terminal. 
+
+***  
 
 ## IV. Base de donnée pré-remplie <a class="anchor" id="chapter4"></a>
 
@@ -151,3 +154,19 @@ La connexion ne nécessite qu'uniquement le "***Pseudo***" de l'utilisateur et s
 Nous vous conseillons de commencer votre expérience avec l'utilisateur ***rastier*** qui possède le *flux* le plus conséquent et le plus de relations avec les autres utilisateurs.
     
 ## **Bon amusement avec ***LITReview***!**  
+
+***  
+
+## V. Rapport Flake8 <a class="anchor" id="chapter5"></a>  
+
+**Flake8** permet d'éplucher le code écrit et de repérer les erreurs de syntaxes et les non conformités avec la PEP.
+Un rapport html contenant les éventuelles erreurs peut-être généré.
+
+Il se trouve à la racine du dossier dans le dossier : **flake8_rapport**
+
+> - flake8_rapport
+>   - index.html
+
+Un nouveau rapport peut-être généré en exécutant la commande suivante dans le terminal :
+
+    flake8 --format=html --htmldir=flake8_rapport
