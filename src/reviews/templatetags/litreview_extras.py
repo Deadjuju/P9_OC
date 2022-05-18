@@ -22,7 +22,7 @@ def model_type(instance):
 def get_posted_at_display(posted_at):
     seconds_ago = (timezone.now() - posted_at).total_seconds()
     if seconds_ago <= 1:
-        return f"Publié à l'instant."
+        return "Publié à l'instant."
     elif seconds_ago <= MINUTE:
         return f"Publié il y a {int(seconds_ago)} secondes."
     elif seconds_ago <= HOUR:
